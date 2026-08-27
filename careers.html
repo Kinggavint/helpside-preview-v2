@@ -339,7 +339,24 @@
         <p style="color: #555; max-width: 40ch; margin: 0 auto;">Thanks for your interest in Helpside. A member of our team will follow up with you within 2–3 business days.</p>
       </div>
 
-      <form id="careers-form" novalidate>
+      <!--
+        Salesforce Web-to-Lead form for careers / job applications.
+        Replace YOUR_SF_ORG_ID with your 15- or 18-character Salesforce Organization ID
+        found at Setup > Company Information > Salesforce.com Organization ID.
+        Because Web-to-Lead creates Lead records, candidate details are stored in the
+        Description field and a custom Lead Source value of "Careers Page".
+        File uploads are not supported by Web-to-Lead; resume submissions continue
+        to route via email to careers@helpside.com as noted in the form.
+      -->
+      <form id="careers-form" novalidate
+            action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
+            method="POST">
+
+        <!-- Salesforce required hidden fields -->
+        <input type="hidden" name="oid" value="YOUR_SF_ORG_ID">
+        <input type="hidden" name="retURL" value="https://kinggavint.github.io/helpside-preview-v2/careers.html?submitted=1">
+        <input type="hidden" name="lead_source" value="Careers Page">
+
         <div class="form-row">
           <div class="form-group">
             <label for="cf-first-name">First Name <span aria-hidden="true" style="color:var(--orange,#e8590c);">*</span></label>
@@ -364,35 +381,38 @@
 
         <div class="form-group">
           <label for="cf-position">Position of Interest <span aria-hidden="true" style="color:var(--orange,#e8590c);">*</span></label>
-          <select id="cf-position" name="position" required>
+          <!-- Mapped to SF standard Title field so it's visible on the Lead record -->
+          <select id="cf-position" name="title" required>
             <option value="" disabled selected>Select a role…</option>
-            <option value="hr-consultant">HR Consultant</option>
-            <option value="payroll-specialist">Payroll Specialist</option>
-            <option value="benefits-advisor">Benefits Advisor</option>
-            <option value="business-development">Business Development Rep</option>
-            <option value="general">General / Not Sure Yet</option>
+            <option value="HR Consultant">HR Consultant</option>
+            <option value="Payroll Specialist">Payroll Specialist</option>
+            <option value="Benefits Advisor">Benefits Advisor</option>
+            <option value="Business Development Rep">Business Development Rep</option>
+            <option value="General / Not Sure Yet">General / Not Sure Yet</option>
           </select>
         </div>
 
         <div class="form-group">
           <label for="cf-linkedin">LinkedIn Profile URL</label>
-          <input type="url" id="cf-linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourname">
+          <!-- Mapped to SF standard field: website -->
+          <input type="url" id="cf-linkedin" name="website" placeholder="https://linkedin.com/in/yourname">
         </div>
 
         <div class="form-group">
           <label for="cf-cover">Tell Us About Yourself <span aria-hidden="true" style="color:var(--orange,#e8590c);">*</span></label>
-          <textarea id="cf-cover" name="cover" required placeholder="Share a bit about your background, why you're interested in Helpside, and what you'd bring to the team."></textarea>
+          <!-- Mapped to SF standard field: description -->
+          <textarea id="cf-cover" name="description" required placeholder="Share a bit about your background, why you're interested in Helpside, and what you'd bring to the team."></textarea>
         </div>
 
         <div class="form-group">
           <label for="cf-resume">Resume / CV</label>
           <input type="file" id="cf-resume" name="resume" accept=".pdf,.doc,.docx">
-          <p class="form-note">PDF or Word document. Max 5 MB. (File upload is illustrative — submissions are currently routed via email to <a href="mailto:careers@helpside.com">careers@helpside.com</a>.)</p>
+          <p class="form-note">PDF or Word document. Max 5 MB. Resume files should be emailed directly to <a href="mailto:careers@helpside.com">careers@helpside.com</a> — file uploads are not supported by the Salesforce Web-to-Lead endpoint.</p>
         </div>
 
         <div class="form-group">
           <label style="display:flex; align-items:flex-start; gap:10px; font-weight:400; cursor:pointer;">
-            <input type="checkbox" name="consent" required style="width:auto; margin-top:3px;"> 
+            <input type="checkbox" name="consent" required style="width:auto; margin-top:3px;">
             <span>I agree to have my information stored by Helpside for hiring purposes and understand it will not be shared with third parties.</span>
           </label>
         </div>
@@ -487,19 +507,27 @@
 <script src="js/site.js" defer></script>
 <script>
 (function () {
+  // Show thank-you state if Salesforce redirected back with ?submitted=1
+  var params = new URLSearchParams(window.location.search);
   var form = document.getElementById('careers-form');
   var wrap = document.getElementById('careers-form-wrap');
   var success = document.getElementById('form-success');
+
+  if (params.get('submitted') === '1') {
+    if (form) form.style.display = 'none';
+    if (success) success.style.display = 'block';
+    if (wrap) wrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
+  // Client-side validation before allowing the form to POST to Salesforce
   if (!form) return;
   form.addEventListener('submit', function (e) {
-    e.preventDefault();
     if (!form.checkValidity()) {
+      e.preventDefault();
       form.reportValidity();
-      return;
     }
-    form.style.display = 'none';
-    success.style.display = 'block';
-    wrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // If valid, the form submits normally to Salesforce Web-to-Lead endpoint
   });
 })();
 </script>

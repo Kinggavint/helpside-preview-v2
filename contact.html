@@ -88,10 +88,27 @@
         <p style="margin-top: 20px;"><strong>Hours</strong><br>Monday through Friday<br>8 AM to 5 PM Mountain Time</p>
       </div>
       <div class="split__media reveal">
-        <form class="form" onsubmit="event.preventDefault(); this.innerHTML='<h3 style=\'text-align:center;padding: 40px 0;\'>Thank you. We will be in touch within one business day.</h3>';" novalidate>
+        <!--
+          Salesforce Web-to-Lead form.
+          Replace YOUR_SF_ORG_ID with your 15- or 18-character Salesforce Organization ID
+          found at Setup > Company Information > Salesforce.com Organization ID.
+          The retURL should point to a thank-you page or back to this page with a success param.
+        -->
+        <form id="contact-form" class="form"
+              action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
+              method="POST">
+
+          <!-- Salesforce required hidden fields -->
+          <input type="hidden" name="oid" value="YOUR_SF_ORG_ID">
+          <input type="hidden" name="retURL" value="https://kinggavint.github.io/helpside-preview-v2/contact.html?submitted=1">
+
+          <!-- Optional: assign to a specific Salesforce user/queue -->
+          <!-- <input type="hidden" name="lead_source" value="Web"> -->
+
           <div class="field">
             <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" required>
+            <!-- SF field: first_name + last_name or just last_name -->
+            <input type="text" id="name" name="last_name" required>
           </div>
           <div class="field">
             <label for="email">Work Email</label>
@@ -103,22 +120,28 @@
           </div>
           <div class="field">
             <label for="employees">Number of Employees</label>
-            <select id="employees" name="employees" required>
+            <!-- Map to SF standard field: numberofemployees -->
+            <select id="employees" name="numberofemployees" required>
               <option value="">Select a range</option>
-              <option>1 to 9</option>
-              <option>10 to 49</option>
-              <option>50 to 99</option>
-              <option>100 to 249</option>
-              <option>250 or more</option>
+              <option value="1">1 to 9</option>
+              <option value="10">10 to 49</option>
+              <option value="50">50 to 99</option>
+              <option value="100">100 to 249</option>
+              <option value="250">250 or more</option>
             </select>
           </div>
           <div class="field">
             <label for="message">How Can We Help?</label>
-            <textarea id="message" name="message" placeholder="Tell us what you are looking for."></textarea>
+            <!-- Map to SF standard field: description -->
+            <textarea id="message" name="description" placeholder="Tell us what you are looking for."></textarea>
           </div>
           <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Send Message <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
-          <p style="color: var(--ink-300); font-size: 13px; margin-top: 20px; text-align: center;">Form is illustrative. Client will wire submission destination during launch.</p>
         </form>
+
+        <!-- Thank-you message shown after SF redirect back with ?submitted=1 -->
+        <div id="contact-success" style="display:none; text-align:center; padding: 40px 0;">
+          <h3 style="color: var(--navy, #07163d);">Thank you. We will be in touch within one business day.</h3>
+        </div>
       </div>
     </div>
   </div>
@@ -193,5 +216,16 @@
 </div>
 
 <script src="js/site.js" defer></script>
+<script>
+// Show thank-you message if Salesforce redirected back with ?submitted=1
+(function () {
+  if (new URLSearchParams(window.location.search).get('submitted') === '1') {
+    var form = document.getElementById('contact-form');
+    var success = document.getElementById('contact-success');
+    if (form) form.style.display = 'none';
+    if (success) success.style.display = 'block';
+  }
+})();
+</script>
 </body>
 </html>
