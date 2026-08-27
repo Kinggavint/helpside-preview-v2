@@ -346,6 +346,18 @@ a:hover { color: var(--orange); }
 .band-navy p { color: rgba(255,255,255,0.85); }
 .band-navy .eyebrow { color: var(--lavender); }
 
+/* Compact CTA footer band */
+.cta-footer-band {
+  background: var(--navy);
+  color: var(--white);
+  padding: clamp(40px, 5vw, 64px) 0;
+}
+.cta-footer-band h1,
+.cta-footer-band h2,
+.cta-footer-band h3 { color: var(--white); }
+.cta-footer-band p { color: rgba(255,255,255,0.85); }
+.cta-footer-band .eyebrow { color: var(--lavender); }
+
 /* ==================== HERO ==================== */
 .hero {
   position: relative;
