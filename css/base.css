@@ -349,7 +349,7 @@ a:hover { color: var(--orange); }
 /* ==================== HERO ==================== */
 .hero {
   position: relative;
-  min-height: 92vh;
+  min-height: clamp(480px, 65vh, 780px);
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -379,7 +379,7 @@ a:hover { color: var(--orange); }
   position: relative;
   z-index: 2;
   max-width: 780px;
-  padding: var(--band) 0;
+  padding: clamp(40px, 6vw, 80px) 0;
 }
 .hero__content h1 { color: var(--white); margin-bottom: 24px; }
 .hero__content p { color: rgba(255,255,255,0.94); font-size: clamp(18px, 1.6vw, 22px); max-width: 60ch; margin-bottom: 40px; }
