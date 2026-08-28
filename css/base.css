@@ -1,21 +1,21 @@
 /* Helpside v2 - Story Scroll, motion 5, bold_impact typography */
 /* Palette source of truth: client-approved customColors (approved 2026-08-26T19:20:41Z) */
-/* #ffffff white, #dad0ec lavender, #095f9e blue, #07163d navy. Orange added from logo pixels as tertiary accent, pending client confirmation. */
+/* Updated 2026: muted purple and grey palette per client request */
 :root {
   --white: #FFFFFF;
-  --lavender: #DAD0EC;
-  --lavender-soft: #EFE9F7;
-  --blue: #095F9E;
-  --navy: #07163D;
-  --orange: #F36017;
-  --ink-700: #1E2A54;
-  --ink-500: #4A5578;
-  --ink-300: #7A8299;
-  --line: #E6E9F2;
-  --wash: #DAD0EC;
-  --cream: #FBFAF8;
-  --shadow-soft: 0 12px 40px rgba(7, 22, 61, 0.08);
-  --shadow-strong: 0 24px 60px rgba(7, 22, 61, 0.16);
+  --lavender: #C4B8D9;
+  --lavender-soft: #EDE8F4;
+  --blue: #7B6FA0;
+  --navy: #3D3550;
+  --orange: #9B89B4;
+  --ink-700: #4A4260;
+  --ink-500: #6B6080;
+  --ink-300: #9990A8;
+  --line: #D6D0E0;
+  --wash: #C4B8D9;
+  --cream: #F4F2F8;
+  --shadow-soft: 0 12px 40px rgba(61, 53, 80, 0.08);
+  --shadow-strong: 0 24px 60px rgba(61, 53, 80, 0.16);
   --radius: 6px;
   --radius-lg: 14px;
   --container: 1280px;
@@ -258,7 +258,7 @@ a:hover { color: var(--orange); }
   text-decoration: none;
 }
 .btn-primary { background: var(--orange); color: var(--white); }
-.btn-primary:hover { background: #d94e0a; color: var(--white); transform: translateY(-2px); }
+.btn-primary:hover { background: #7a6896; color: var(--white); transform: translateY(-2px); }
 .btn-secondary { background: transparent; color: var(--navy); border-color: var(--navy); }
 .btn-secondary:hover { background: var(--navy); color: var(--white); }
 .btn-ghost { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.4); }
@@ -372,7 +372,7 @@ a:hover { color: var(--orange); }
 .hero__scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(105deg, rgba(7,22,61,0.82) 0%, rgba(7,22,61,0.62) 45%, rgba(7,22,61,0.32) 75%, rgba(7,22,61,0) 100%);
+  background: linear-gradient(105deg, rgba(61,53,80,0.82) 0%, rgba(61,53,80,0.62) 45%, rgba(61,53,80,0.32) 75%, rgba(61,53,80,0) 100%);
   z-index: 1;
 }
 .hero__content {
@@ -584,7 +584,7 @@ a:hover { color: var(--orange); }
 .field input:focus, .field select:focus, .field textarea:focus {
   outline: none;
   border-color: var(--orange);
-  box-shadow: 0 0 0 3px rgba(243, 96, 23, 0.15);
+  box-shadow: 0 0 0 3px rgba(155, 137, 180, 0.2);
 }
 .field textarea { min-height: 140px; resize: vertical; }
 
