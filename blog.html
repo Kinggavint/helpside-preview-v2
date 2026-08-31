@@ -15,7 +15,7 @@
 <link rel="icon" type="image/svg+xml" href="assets/helpside-logo.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Hind:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Archivo+Black&family=Hind:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/base.css">
 <script type="application/ld+json">
 {
@@ -36,6 +36,461 @@
   ]
 }
 </script>
+
+<style>
+  /* ── Premium Blog Styles ── */
+
+  /* CSS Custom Properties */
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8D5A3;
+    --gold-dark: #A67C32;
+    --navy: #0B1F3A;
+    --navy-deep: #061426;
+    --ivory: #FAF8F4;
+    --champagne: #F5EDD6;
+  }
+
+  /* Blog Hero */
+  .blog-hero {
+    position: relative;
+    padding-top: 160px;
+    padding-bottom: 80px;
+    background: linear-gradient(135deg, var(--navy-deep) 0%, #12294A 50%, #1A3A5C 100%);
+    overflow: hidden;
+  }
+
+  .blog-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(201, 168, 76, 0.12) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(201, 168, 76, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .blog-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(6, 20, 38, 0.3) 0%,
+      rgba(11, 31, 58, 0.1) 50%,
+      rgba(6, 20, 38, 0.4) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .blog-hero .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  .blog-hero .eyebrow {
+    color: var(--gold-light);
+    letter-spacing: 0.15em;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .blog-hero .eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .blog-hero h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+  }
+
+  .blog-hero .lede {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.7;
+    max-width: 52ch;
+    font-weight: 300;
+  }
+
+  /* Gold Accent Line */
+  .gold-accent-line {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    margin: 20px 0 32px;
+    border-radius: 2px;
+  }
+
+  /* Blog Grid Section */
+  .blog-section {
+    background: var(--ivory);
+    padding: 80px 0 100px;
+    position: relative;
+  }
+
+  .blog-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--navy), var(--gold), var(--navy));
+  }
+
+  /* Premium Blog Grid */
+  .blog-grid-premium {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 36px;
+    margin-top: 20px;
+  }
+
+  /* Premium Blog Cards */
+  .blog-card-premium {
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 20px rgba(11, 31, 58, 0.06);
+    border: 1px solid rgba(201, 168, 76, 0.12);
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                border-color 0.35s ease;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .blog-card-premium.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .blog-card-premium:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 48px rgba(11, 31, 58, 0.14);
+    border-color: rgba(201, 168, 76, 0.35);
+  }
+
+  /* Card Cover / Image Area */
+  .blog-card-premium__cover {
+    position: relative;
+    height: 200px;
+    background: linear-gradient(135deg, #12294A 0%, #1A3A5C 60%, #0B1F3A 100%);
+    overflow: hidden;
+  }
+
+  .blog-card-premium__cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 60%, rgba(201, 168, 76, 0.2) 0%, transparent 60%),
+      radial-gradient(ellipse at 70% 20%, rgba(201, 168, 76, 0.1) 0%, transparent 50%);
+  }
+
+  .blog-card-premium__cover-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(11, 31, 58, 0.1) 0%,
+      rgba(11, 31, 58, 0.55) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .blog-card-premium:hover .blog-card-premium__cover-overlay {
+    opacity: 1;
+  }
+
+  .blog-card-premium__category-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: rgba(201, 168, 76, 0.9);
+    color: var(--navy-deep);
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+    z-index: 2;
+    backdrop-filter: blur(4px);
+  }
+
+  .blog-card-premium__cover-icon {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    opacity: 0.3;
+  }
+
+  /* Card Body */
+  .blog-card-premium__body {
+    padding: 28px 28px 24px;
+  }
+
+  .blog-card-premium__meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--gold-dark);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .blog-card-premium__title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.4;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+    transition: color 0.25s ease;
+  }
+
+  .blog-card-premium:hover .blog-card-premium__title {
+    color: var(--gold-dark);
+  }
+
+  .blog-card-premium__excerpt {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    color: #5a6275;
+    line-height: 1.7;
+    margin-bottom: 22px;
+    font-weight: 300;
+  }
+
+  .blog-card-premium__divider {
+    width: 32px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    margin-bottom: 18px;
+  }
+
+  .blog-card-premium__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--navy);
+    text-decoration: none;
+    transition: color 0.25s ease, gap 0.25s ease;
+  }
+
+  .blog-card-premium__cta::after {
+    content: '→';
+    transition: transform 0.25s ease;
+    font-size: 13px;
+  }
+
+  .blog-card-premium:hover .blog-card-premium__cta {
+    color: var(--gold-dark);
+    gap: 12px;
+  }
+
+  .blog-card-premium:hover .blog-card-premium__cta::after {
+    transform: translateX(3px);
+  }
+
+  /* Section heading */
+  .blog-section-heading {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+
+  .blog-section-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: #6b7385;
+    font-weight: 300;
+    margin-bottom: 48px;
+    max-width: 55ch;
+  }
+
+  /* Note text */
+  .blog-note {
+    text-align: center;
+    color: #9aa0b0;
+    margin-top: 56px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    font-weight: 300;
+    padding: 20px;
+    border-top: 1px solid rgba(201, 168, 76, 0.15);
+  }
+
+  /* CTA Band */
+  .band-navy-premium {
+    background: linear-gradient(135deg, var(--navy-deep) 0%, #12294A 50%, var(--navy) 100%);
+    padding: 80px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .band-navy-premium::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 50%, rgba(201, 168, 76, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .band-navy-premium::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .band-navy-premium .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  .band-navy-premium .eyebrow {
+    color: var(--gold-light);
+    letter-spacing: 0.15em;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .band-navy-premium .eyebrow::before,
+  .band-navy-premium .eyebrow::after {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .band-navy-premium h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: #fff;
+    max-width: 22ch;
+    margin: 0 auto 20px;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+
+  .band-navy-premium p {
+    font-family: 'Inter', sans-serif;
+    max-width: 58ch;
+    margin: 0 auto 40px;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1rem;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .btn-gold {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    color: var(--navy-deep) !important;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 14px 36px;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 4px 20px rgba(201, 168, 76, 0.3);
+  }
+
+  .btn-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(201, 168, 76, 0.45);
+  }
+
+  /* Scroll animation base */
+  [data-animate] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  [data-animate].animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  [data-animate]:nth-child(2) { transition-delay: 0.1s; }
+  [data-animate]:nth-child(3) { transition-delay: 0.2s; }
+
+  .blog-card-premium[data-animate]:nth-child(1) { transition-delay: 0s; }
+  .blog-card-premium[data-animate]:nth-child(2) { transition-delay: 0.12s; }
+  .blog-card-premium[data-animate]:nth-child(3) { transition-delay: 0.24s; }
+
+  @media (max-width: 768px) {
+    .blog-grid-premium {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .blog-hero {
+      padding-top: 130px;
+      padding-bottom: 60px;
+    }
+  }
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -63,60 +518,99 @@
   </div>
 </nav>
 <main id="main">
-<section class="band band-cream" style="padding-top: 140px;">
-  <div class="container">
-    <div class="reveal" style="max-width: 60ch;">
-      <p class="eyebrow">Insights</p>
-      <h1>HR, Payroll, and Benefits Insights for Growing Businesses.</h1>
-      <p class="lede">Short, practical articles from the Helpside team on hiring, payroll compliance, benefits strategy, and workplace safety.</p>
+
+  <!-- Premium Hero Section -->
+  <section class="blog-hero">
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="reveal" style="max-width: 62ch;">
+        <p class="eyebrow">Insights &amp; Resources</p>
+        <h1>HR, Payroll, and Benefits Insights for Growing Businesses.</h1>
+        <div class="gold-accent-line"></div>
+        <p class="lede">Short, practical articles from the Helpside team on hiring, payroll compliance, benefits strategy, and workplace safety.</p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="band">
-  <div class="container">
-    <div class="blog-grid reveal">
-      <article class="blog-card" data-missing-asset="blog_content">
-        <div class="blog-card__cover" aria-hidden="true"></div>
-        <div class="blog-card__body">
-          <p class="blog-card__meta">HR Compliance | Coming soon</p>
-          <h3 class="blog-card__title">The 2026 Utah HR Compliance Checklist</h3>
-          <p class="blog-card__excerpt">A quick reference for wage laws, paid leave, and I-9 requirements every Utah employer should know. [CONFIRM: Article draft pending client review.]</p>
-          <span style="color: var(--blue); font-family: 'Archivo Black'; font-size: 13px; letter-spacing: 0.08em;">READ ARTICLE</span>
-        </div>
-      </article>
-      <article class="blog-card" data-missing-asset="blog_content">
-        <div class="blog-card__cover" aria-hidden="true"></div>
-        <div class="blog-card__body">
-          <p class="blog-card__meta">Benefits | Coming soon</p>
-          <h3 class="blog-card__title">How PEO Master Medical Plans Save Small Employers 20 Percent</h3>
-          <p class="blog-card__excerpt">Why joining a larger risk pool through a PEO gives small teams access to plans usually reserved for Fortune 500 companies. [CONFIRM: Article draft pending client review.]</p>
-          <span style="color: var(--blue); font-family: 'Archivo Black'; font-size: 13px; letter-spacing: 0.08em;">READ ARTICLE</span>
-        </div>
-      </article>
-      <article class="blog-card" data-missing-asset="blog_content">
-        <div class="blog-card__cover" aria-hidden="true"></div>
-        <div class="blog-card__body">
-          <p class="blog-card__meta">Payroll | Coming soon</p>
-          <h3 class="blog-card__title">Payroll Mistakes That Cost Utah Employers the Most</h3>
-          <p class="blog-card__excerpt">The five most common payroll errors we see and the specific fixes that prevent DOL and IRS penalties. [CONFIRM: Article draft pending client review.]</p>
-          <span style="color: var(--blue); font-family: 'Archivo Black'; font-size: 13px; letter-spacing: 0.08em;">READ ARTICLE</span>
-        </div>
-      </article>
+  <!-- Blog Grid Section -->
+  <section class="blog-section">
+    <div class="container">
+      <div data-animate>
+        <h2 class="blog-section-heading">Latest Articles</h2>
+        <p class="blog-section-sub">Expert perspectives to help you navigate HR, compliance, and employee benefits with confidence.</p>
+      </div>
+
+      <div class="blog-grid-premium">
+
+        <article class="blog-card-premium" data-animate data-missing-asset="blog_content">
+          <div class="blog-card-premium__cover" aria-hidden="true">
+            <div class="blog-card-premium__cover-overlay"></div>
+            <span class="blog-card-premium__category-badge">HR Compliance</span>
+            <svg class="blog-card-premium__cover-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="4" width="32" height="32" rx="4" stroke="#C9A84C" stroke-width="2"/>
+              <path d="M12 14h16M12 20h16M12 26h10" stroke="#C9A84C" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="blog-card-premium__body">
+            <p class="blog-card-premium__meta">Coming Soon</p>
+            <h3 class="blog-card-premium__title">The 2026 Utah HR Compliance Checklist</h3>
+            <div class="blog-card-premium__divider"></div>
+            <p class="blog-card-premium__excerpt">A quick reference for wage laws, paid leave, and I-9 requirements every Utah employer should know.</p>
+            <span class="blog-card-premium__cta">Read Article</span>
+          </div>
+        </article>
+
+        <article class="blog-card-premium" data-animate data-missing-asset="blog_content">
+          <div class="blog-card-premium__cover" aria-hidden="true" style="background: linear-gradient(135deg, #1A2E4A 0%, #243B5E 60%, #0F2238 100%);">
+            <div class="blog-card-premium__cover-overlay"></div>
+            <span class="blog-card-premium__category-badge">Benefits</span>
+            <svg class="blog-card-premium__cover-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="20" cy="20" r="14" stroke="#C9A84C" stroke-width="2"/>
+              <path d="M20 12v8l5 3" stroke="#C9A84C" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="blog-card-premium__body">
+            <p class="blog-card-premium__meta">Coming Soon</p>
+            <h3 class="blog-card-premium__title">How PEO Master Medical Plans Save Small Employers 20 Percent</h3>
+            <div class="blog-card-premium__divider"></div>
+            <p class="blog-card-premium__excerpt">Why joining a larger risk pool through a PEO gives small teams access to plans usually reserved for Fortune 500 companies.</p>
+            <span class="blog-card-premium__cta">Read Article</span>
+          </div>
+        </article>
+
+        <article class="blog-card-premium" data-animate data-missing-asset="blog_content">
+          <div class="blog-card-premium__cover" aria-hidden="true" style="background: linear-gradient(135deg, #0F2238 0%, #1C3250 60%, #152840 100%);">
+            <div class="blog-card-premium__cover-overlay"></div>
+            <span class="blog-card-premium__category-badge">Payroll</span>
+            <svg class="blog-card-premium__cover-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="6" y="10" width="28" height="20" rx="3" stroke="#C9A84C" stroke-width="2"/>
+              <path d="M6 16h28M14 16v14M20 13v-3M20 30v3" stroke="#C9A84C" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="blog-card-premium__body">
+            <p class="blog-card-premium__meta">Coming Soon</p>
+            <h3 class="blog-card-premium__title">Payroll Mistakes That Cost Utah Employers the Most</h3>
+            <div class="blog-card-premium__divider"></div>
+            <p class="blog-card-premium__excerpt">The five most common payroll errors we see and the specific fixes that prevent DOL and IRS penalties.</p>
+            <span class="blog-card-premium__cta">Read Article</span>
+          </div>
+        </article>
+
+      </div>
+
+      <p class="blog-note">Article library is scaffolded. Helpside will supply final copy and author bylines before launch.</p>
     </div>
-    <p style="text-align: center; color: var(--ink-500); margin-top: 60px; font-size: 15px;">Article library is scaffolded. Helpside will supply final copy and author bylines before launch.</p>
-  </div>
-</section>
+  </section>
 
-<section class="band band-navy">
-  <div class="container" style="text-align:center;">
-    <p class="eyebrow" style="justify-content:center;">Ready to Talk</p>
-    <h2 style="max-width: 22ch; margin: 0 auto 24px;">Let's Build Something Simpler for Your Team.</h2>
-    <p style="max-width: 60ch; margin: 0 auto 40px; color: rgba(255,255,255,0.85);">Book a 30 minute conversation with a Helpside specialist. No pressure, no long term contracts. Just a plan that works.</p>
-    <a href="contact.html" class="btn btn-primary">Request a Consultation</a>
-  </div>
-</section>
-
+  <!-- CTA Band -->
+  <section class="band-navy-premium">
+    <div class="container">
+      <p class="eyebrow">Ready to Talk</p>
+      <h2>Let's Build Something Simpler for Your Team.</h2>
+      <p>Book a 30‑minute conversation with a Helpside specialist. No pressure, no long‑term contracts. Just a plan that works.</p>
+      <a href="contact.html" class="btn-gold">Request a Consultation</a>
+    </div>
+  </section>
 
 </main>
 <footer class="site-footer">
@@ -160,7 +654,8 @@
     </div>
   </div>
 </footer>
-<!-- A11Y toolbar (accessibility feature from onboarding) -->
+
+<!-- A11Y toolbar -->
 <div id="a11y-toolbar" data-a11y-toolbar role="toolbar" aria-label="Accessibility tools">
   <button type="button" data-a11y="text-size" aria-pressed="false" title="Increase text size" aria-label="Increase text size"><span>A+</span></button>
   <button type="button" data-a11y="contrast" aria-pressed="false" title="High contrast" aria-label="Toggle high contrast">
@@ -171,7 +666,7 @@
   </button>
 </div>
 
-<!-- Chat launcher (live_chat placeholder pending client-supplied provider or FAQ knowledge base) -->
+<!-- Chat launcher -->
 <button id="chat-launcher" data-missing-asset="live_chat_provider" aria-label="Chat with Helpside" aria-expanded="false">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
 </button>
@@ -187,5 +682,24 @@
 </div>
 
 <script src="js/site.js" defer></script>
+<script>
+  // Scroll-triggered animation observer
+  (function () {
+    if (typeof IntersectionObserver === 'undefined') return;
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('[data-animate], .blog-card-premium').forEach(function (el) {
+      observer.observe(el);
+    });
+  })();
+</script>
 </body>
 </html>

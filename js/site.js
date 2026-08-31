@@ -2,13 +2,68 @@
 (function(){
   'use strict';
 
-  // Reveal on scroll
+  // ── Smooth scroll for anchor links ──────────────────────────────────────────
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor){
+    anchor.addEventListener('click', function(e){
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // ── Intersection Observer: fade-in-up for cards, sections, headings ─────────
+  var animateEls = document.querySelectorAll(
+    '.reveal, .card, .feature-card, .service-card, .team-card, ' +
+    '.pricing-card, .testimonial-card, .animate-on-scroll, ' +
+    'h1, h2, h3, section > p, .section-intro'
+  );
+
+  if ('IntersectionObserver' in window && animateEls.length) {
+    // Add base class for CSS animation hooks
+    animateEls.forEach(function(el){
+      if (!el.classList.contains('no-animate')) {
+        el.classList.add('animate-ready');
+      }
+    });
+
+    var animateIo = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          // Stagger siblings slightly if inside a grid/flex parent
+          var siblings = entry.target.parentElement
+            ? entry.target.parentElement.querySelectorAll('.animate-ready')
+            : [];
+          var idx = Array.prototype.indexOf.call(siblings, entry.target);
+          var delay = Math.min(idx * 60, 300);
+
+          setTimeout(function(){
+            entry.target.classList.add('animate-in');
+            entry.target.classList.add('is-visible');
+          }, delay);
+
+          animateIo.unobserve(entry.target);
+        }
+      });
+    }, {
+      rootMargin: '0px 0px -8% 0px',
+      threshold: 0.07
+    });
+
+    animateEls.forEach(function(el){
+      animateIo.observe(el);
+    });
+  }
+
+  // ── Reveal on scroll (legacy .reveal class support) ──────────────────────────
   var reveals = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window && reveals.length) {
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
+          entry.target.classList.add('animate-in');
           io.unobserve(entry.target);
         }
       });
@@ -16,9 +71,11 @@
     reveals.forEach(function(el){ io.observe(el); });
   }
 
-  // Hero parallax (motion 5)
+  // ── Hero parallax ────────────────────────────────────────────────────────────
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   var heroPhoto = document.querySelector('.hero__photo img');
-  if (heroPhoto && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (heroPhoto && !prefersReducedMotion) {
     window.addEventListener('scroll', function(){
       var y = window.scrollY;
       if (y < window.innerHeight) {
@@ -28,7 +85,22 @@
     }, { passive: true });
   }
 
-  // Nav toggle
+  // ── Hero section parallax overlay depth ─────────────────────────────────────
+  var heroSections = document.querySelectorAll('.hero, .hero-overlay, [class*="hero"]');
+  if (heroSections.length && !prefersReducedMotion) {
+    window.addEventListener('scroll', function(){
+      var y = window.scrollY;
+      heroSections.forEach(function(hero){
+        var rect = hero.getBoundingClientRect();
+        if (rect.bottom > 0 && rect.top < window.innerHeight) {
+          var offset = y * 0.25;
+          hero.style.backgroundPositionY = offset + 'px';
+        }
+      });
+    }, { passive: true });
+  }
+
+  // ── Nav toggle ───────────────────────────────────────────────────────────────
   var toggle = document.querySelector('.nav-toggle');
   var navInner = document.querySelector('.site-nav__inner');
   if (toggle && navInner) {
@@ -37,9 +109,23 @@
     });
   }
 
-  // Stat counter
+  // ── Scroll-aware navbar (add class when scrolled) ────────────────────────────
+  var siteHeader = document.querySelector('.site-header, header');
+  if (siteHeader) {
+    var onHeaderScroll = function(){
+      if (window.scrollY > 40) {
+        siteHeader.classList.add('scrolled');
+      } else {
+        siteHeader.classList.remove('scrolled');
+      }
+    };
+    window.addEventListener('scroll', onHeaderScroll, { passive: true });
+    onHeaderScroll();
+  }
+
+  // ── Stat counter ─────────────────────────────────────────────────────────────
   var stats = document.querySelectorAll('[data-count]');
-  if ('IntersectionObserver' in window && stats.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if ('IntersectionObserver' in window && stats.length && !prefersReducedMotion) {
     var countIo = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
         if (entry.isIntersecting) {
@@ -63,7 +149,7 @@
     stats.forEach(function(el){ countIo.observe(el); });
   }
 
-  // Slideshow (photo carousel)
+  // ── Slideshow (photo carousel) ───────────────────────────────────────────────
   var track = document.getElementById('slideshow-track');
   var prevBtn = document.querySelector('[data-slide-prev]');
   var nextBtn = document.querySelector('[data-slide-next]');
@@ -80,7 +166,7 @@
     });
   }
 
-  // Chat launcher
+  // ── Chat launcher ────────────────────────────────────────────────────────────
   var chatBtn = document.getElementById('chat-launcher');
   var chatModal = document.getElementById('chat-modal');
   if (chatBtn && chatModal) {
@@ -98,7 +184,7 @@
     });
   }
 
-  // Accessibility toolbar
+  // ── Accessibility toolbar ────────────────────────────────────────────────────
   var a11yButtons = document.querySelectorAll('[data-a11y]');
   var htmlEl = document.documentElement;
   var A11Y_KEY = 'helpside_a11y_prefs';
@@ -136,7 +222,7 @@
   });
   if (a11yButtons.length) applyA11y();
 
-  // Language switcher (visual highlight only)
+  // ── Language switcher (visual highlight only) ────────────────────────────────
   var langButtons = document.querySelectorAll('.lang-switch a');
   langButtons.forEach(function(a){
     a.addEventListener('click', function(){
@@ -144,4 +230,26 @@
       a.setAttribute('aria-current', 'true');
     });
   });
+
+  // ── Card hover micro-interactions ────────────────────────────────────────────
+  var cards = document.querySelectorAll(
+    '.card, .feature-card, .service-card, .team-card, .pricing-card, .testimonial-card'
+  );
+  cards.forEach(function(card){
+    card.addEventListener('mouseenter', function(){
+      this.style.willChange = 'transform, box-shadow';
+    });
+    card.addEventListener('mouseleave', function(){
+      this.style.willChange = 'auto';
+    });
+  });
+
+  // ── Link underline animation trigger ────────────────────────────────────────
+  // Applied via CSS, but ensure .animated-link class is present on nav links
+  document.querySelectorAll('.site-nav a, .footer-nav a').forEach(function(link){
+    if (!link.classList.contains('btn') && !link.classList.contains('button')) {
+      link.classList.add('animated-link');
+    }
+  });
+
 })();

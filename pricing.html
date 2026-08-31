@@ -15,8 +15,289 @@
 <link rel="icon" type="image/svg+xml" href="assets/helpside-logo.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Hind:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Hind:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/base.css">
+<style>
+  /* ── Premium Pricing Page Styles ── */
+
+  /* Hero overlay */
+  .hero-short {
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-short .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10,25,60,0.82) 0%, rgba(10,25,60,0.60) 60%, rgba(180,140,60,0.18) 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero-short .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Gold accent rule beneath page titles */
+  .title-gold-accent {
+    display: block;
+    width: 64px;
+    height: 3px;
+    background: linear-gradient(90deg, #b8973a 0%, #e2c97e 50%, #b8973a 100%);
+    border-radius: 2px;
+    margin: 18px auto 0;
+  }
+  .title-gold-accent--left {
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  /* Playfair Display headings */
+  .playfair {
+    font-family: 'Playfair Display', Georgia, serif;
+    letter-spacing: -0.01em;
+  }
+
+  /* Gold gradient CTA button */
+  .btn-gold {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    background: linear-gradient(135deg, #b8973a 0%, #e2c97e 50%, #b8973a 100%);
+    background-size: 200% auto;
+    color: #1a1a2e;
+    font-family: 'Inter', 'Hind', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-position 0.4s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 16px rgba(184,151,58,0.28);
+    width: 100%;
+  }
+  .btn-gold:hover {
+    background-position: right center;
+    box-shadow: 0 6px 24px rgba(184,151,58,0.42);
+    transform: translateY(-1px);
+    color: #1a1a2e;
+  }
+
+  /* Pricing cards premium upgrade */
+  .pricing-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 48px 36px 40px;
+    box-shadow: 0 4px 24px rgba(10,25,60,0.08);
+    border: 1px solid rgba(10,25,60,0.08);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .pricing-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(10,25,60,0.14);
+  }
+  .pricing-card--featured {
+    border: 2px solid transparent;
+    background: linear-gradient(#fff, #fff) padding-box,
+                linear-gradient(135deg, #b8973a, #e2c97e, #b8973a) border-box;
+    box-shadow: 0 8px 40px rgba(184,151,58,0.18), 0 4px 24px rgba(10,25,60,0.10);
+  }
+  .pricing-card--featured:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 56px rgba(184,151,58,0.24), 0 8px 32px rgba(10,25,60,0.12);
+  }
+
+  /* Most Popular badge */
+  .most-popular-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #b8973a 0%, #e2c97e 50%, #b8973a 100%);
+    color: #1a1a2e;
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-family: 'Inter', 'Hind', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(184,151,58,0.35);
+  }
+
+  /* Pricing check icon */
+  .pricing-check {
+    color: #b8973a;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* Pricing feature list */
+  .pricing-features {
+    list-style: none;
+    padding: 0;
+    margin: 24px 0 32px;
+    flex: 1;
+  }
+  .pricing-features li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    font-family: 'Inter', 'Hind', sans-serif;
+    font-size: 15px;
+    color: #3a3a4a;
+    line-height: 1.5;
+  }
+
+  /* Pricing tier label */
+  .pricing-tier-label {
+    font-family: 'Inter', 'Hind', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #b8973a;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  /* Pricing amount */
+  .pricing-amount {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(40px, 5vw, 56px);
+    color: var(--navy, #0a1940);
+    font-weight: 700;
+    line-height: 1;
+    margin: 0 0 4px;
+  }
+
+  /* Pricing period */
+  .pricing-period {
+    color: #888;
+    font-family: 'Inter', 'Hind', sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+  }
+
+  /* Pricing description */
+  .pricing-desc {
+    font-family: 'Inter', 'Hind', sans-serif;
+    font-size: 15px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  /* Divider line in card */
+  .pricing-divider {
+    border: none;
+    border-top: 1px solid rgba(10,25,60,0.08);
+    margin: 20px 0;
+  }
+
+  /* What's included section card */
+  .included-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 32px 28px;
+    border: 1px solid rgba(10,25,60,0.07);
+    box-shadow: 0 2px 12px rgba(10,25,60,0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .included-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(10,25,60,0.11);
+  }
+  .included-card h4 {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: var(--navy, #0a1940);
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .included-card p {
+    font-family: 'Inter', 'Hind', sans-serif;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Section heading premium style */
+  .section-heading-premium {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+
+  /* Scroll animation */
+  [data-animate] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  [data-animate].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  [data-animate-delay="1"] { transition-delay: 0.1s; }
+  [data-animate-delay="2"] { transition-delay: 0.2s; }
+  [data-animate-delay="3"] { transition-delay: 0.3s; }
+  [data-animate-delay="4"] { transition-delay: 0.4s; }
+  [data-animate-delay="5"] { transition-delay: 0.5s; }
+  [data-animate-delay="6"] { transition-delay: 0.6s; }
+
+  /* Pricing grid layout */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .pricing-grid {
+      grid-template-columns: 1fr;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+  }
+
+  /* Included grid */
+  .included-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 900px) {
+    .included-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 600px) {
+    .included-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Disclaimer */
+  .pricing-disclaimer {
+    text-align: center;
+    margin-top: 48px;
+    color: #999;
+    font-family: 'Inter', 'Hind', sans-serif;
+    font-size: 13px;
+    max-width: 60ch;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+</style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://kinggavint.github.io/helpside-preview-v2/"},{"@type":"ListItem","position":2,"name":"Pricing","item":"https://kinggavint.github.io/helpside-preview-v2/pricing.html"}]}
 </script>
@@ -49,95 +330,185 @@
 
 <main id="main">
 
+<!-- ── Hero ── -->
 <section class="hero hero-short">
+  <div class="hero-overlay"></div>
   <div class="container">
-    <p class="eyebrow">Pricing</p>
-    <h1>Transparent Per-Employee-Per-Month Pricing.</h1>
-    <p class="lede">Three tiers based on the services your business needs. No hidden fees, no long term contracts, no percent-of-payroll fine print.</p>
+    <p class="eyebrow" data-animate>Pricing</p>
+    <h1 class="playfair" data-animate data-animate-delay="1">Transparent Per-Employee-Per-Month Pricing.</h1>
+    <span class="title-gold-accent" style="margin: 16px auto 0;" aria-hidden="true"></span>
+    <p class="lede" data-animate data-animate-delay="2">Three tiers based on the services your business needs. No hidden fees, no long term contracts, no percent-of-payroll fine print.</p>
   </div>
 </section>
 
+<!-- ── Pricing Cards ── -->
 <section class="band">
   <div class="container">
-    <div class="grid grid-3">
-      <div class="card reveal">
-        <p class="eyebrow" style="margin-bottom: 12px;">Foundation</p>
-        <h3 style="font-size: clamp(40px, 5vw, 56px); color: var(--navy);"><span class="confirm-inline" data-unverified="true">[CONFIRM]</span></h3>
-        <p style="color: var(--ink-300); font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em;">Per Employee Per Month</p>
-        <p style="margin: 24px 0;">Perfect for small teams that need reliable payroll and basic HR support.</p>
-        <ul style="list-style: none; padding: 0; margin: 24px 0;">
-          <li style="display:flex;gap:10px;align-items:baseline;margin-bottom:10px;"><span style="color:var(--orange);flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Full service payroll processing</li>
-          <li style="display:flex;gap:10px;align-items:baseline;margin-bottom:10px;"><span style="color:var(--orange);flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Tax filings and year-end W-2s</li>
-          <li style="display:flex;gap:10px;align-items:baseline;margin-bottom:10px;"><span style="color:var(--orange);flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Employee self service portal</li>
-          <li style="display:flex;gap:10px;align-items:baseline;margin-bottom:10px;"><span style="color:var(--orange);flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Direct deposit and paperless pay</li>
-          <li style="display:flex;gap:10px;align-items:baseline;"><span style="color:var(--orange);flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Basic HR compliance guidance</li>
+    <div class="pricing-grid">
+
+      <!-- Foundation -->
+      <div class="pricing-card" data-animate data-animate-delay="1">
+        <span class="pricing-tier-label">Foundation</span>
+        <div class="pricing-amount"><span class="confirm-inline" data-unverified="true">[CONFIRM]</span></div>
+        <p class="pricing-period">Per Employee Per Month</p>
+        <hr class="pricing-divider">
+        <p class="pricing-desc">Perfect for small teams that need reliable payroll and basic HR support.</p>
+        <ul class="pricing-features">
+          <li>
+            <span class="pricing-check" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Full service payroll processing
+          </li>
+          <li>
+            <span class="pricing-check" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Tax filings and year-end W-2s
+          </li>
+          <li>
+            <span class="pricing-check" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Employee self-service portal
+          </li>
+          <li>
+            <span class="pricing-check" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Direct deposit and paperless pay
+          </li>
+          <li>
+            <span class="pricing-check" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Basic HR compliance guidance
+          </li>
         </ul>
-        <a href="contact.html" class="btn btn-secondary" style="width:100%; justify-content:center;">Request a Quote</a>
+        <a href="contact.html" class="btn btn-secondary" style="width:100%; justify-content:center; text-align:center;">Request a Quote</a>
       </div>
-      <div class="card reveal" style="border: 2px solid var(--orange); position: relative;">
-        <div style="position:absolute; top:-12px; left:50%; transform:translateX(-50%); background: var(--orange); color: var(--white); padding: 6px 16px; border-radius: 20px; font-family: 'Hind', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;">Most Popular</div>
-        <p class="eyebrow" style="margin-bottom: 12px;">Growth</p>
-        <h3 style="font-size: clamp(40px, 5vw, 56px); color: var(--navy);"><span class="confirm-inline" data-unverified="true">[CONFIRM]</span></h3>
-        <p style="color: var(--ink-300); font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em;">Per Employee Per Month</p>
-        <p style="margin: 24px 0;">Everything in Foundation plus dedicated HR consulting and group benefits access.</p>
-        <ul style="list-style: none; padding: 0; margin: 24px 0;">
-          <li style="display:flex;gap:10px;align-items:baseline;margin-bottom:10px;"><span style="color:var(--orange);flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Everything in Foundation</li>
-          <li style="display:flex;gap:10px;align-items:baseline;margin-bottom:10px;"><span style="color:var(--orange);flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Dedicated HR consultant</li>
-          <li style="display:flex;gap:10px;align-items:baseline;margin-bottom:10px;"><span style="color:var(--orange);flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Master medical, dental, vision plans</li>
-          <li style="display:flex;gap:10px;align-items:baseline;margin-bottom:10px;"><span style="color:var(--orange);flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Workers compensation coverage</li>
-          <li style="display:flex;gap:10px;align-items:baseline;margin-bottom:10px;"><span style="color:var(--orange);flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Employee handbook development</li>
-          <li style="display:flex;gap:10px;align-items:baseline;"><span style="color:var(--orange);flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Manager training programs</li>
+
+      <!-- Growth (Featured) -->
+      <div class="pricing-card pricing-card--featured" data-animate data-animate-delay="2">
+        <div class="most-popular-badge" aria-label="Most Popular plan">Most Popular</div>
+        <span class="pricing-tier-label">Growth</span>
+        <div class="pricing-amount"><span class="confirm-inline" data-unverified="true">[CONFIRM]</span></div>
+        <p class="pricing-period">Per Employee Per Month</p>
+        <hr class="pricing-divider">
+        <p class="pricing-desc">Everything in Foundation plus dedicated HR consulting and group benefits access.</p>
+        <ul class="pricing-features">
+          <li>
+            <span class="pricing-check" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Everything in Foundation
+          </li>
+          <li>
+            <span class="pricing-check" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Dedicated HR consultant
+          </li>
+          <li>
+            <span class="pricing-check" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Master medical, dental, vision plans
+          </li>
+          <li>
+            <span class="pricing-check" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Workers compensation coverage
+          </li>
+          <li>
+            <span class="pricing-check" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Employee handbook development
+          </li>
+          <li>
+            <span class="pricing-check" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Manager training programs
+          </li>
         </ul>
-        <a href="contact.html" class="btn btn-primary" style="width:100%; justify-content:center;">Request a Quote</a>
+        <a href="contact.html" class="btn-gold" style="margin-top: auto;">Request a Quote</a>
       </div>
-      <div class="card reveal">
-        <p class="eyebrow" style="margin-bottom: 12px;">Enterprise</p>
-        <h3 style="font-size: clamp(40px, 5vw, 56px); color: var(--navy);">Custom</h3>
-        <p style="color: var(--ink-300); font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em;">Priced per Engagement</p>
-        <p style="margin: 24px 0;">For organizations with 100+ employees, multi-state operations, or complex benefits stacks.</p>
-        <ul style="list-style: none; padding: 0; margin: 24px 0;">
-          <li style="display:flex;gap:10px;align-items:baseline;margin-bottom:10px;"><span style="color:var(--orange);flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Everything in Growth</li>
-          <li style="display:flex;gap:10px;align-items:baseline;margin-bottom:10px;"><span style="color:var(--orange);flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Multi-state compliance program</li>
-          <li style="display:flex;gap:10px;align-items:baseline;margin-bottom:10px;"><span style="color:var(--orange);flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Custom benefits plan design</li>
-          <li style="display:flex;gap:10px;align-items:baseline;margin-bottom:10px;"><span style="color:var(--orange);flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Executive compensation planning</li>
-          <li style="display:flex;gap:10px;align-items:baseline;margin-bottom:10px;"><span style="color:var(--orange);flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Board-level reporting</li>
-          <li style="display:flex;gap:10px;align-items:baseline;"><span style="color:var(--orange);flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> White-glove implementation</li>
+
+      <!-- Enterprise -->
+      <div class="pricing-card" data-animate data-animate-delay="3">
+        <span class="pricing-tier-label">Enterprise</span>
+        <div class="pricing-amount" style="font-size: clamp(32px, 4vw, 44px);">Custom</div>
+        <p class="pricing-period">Priced per Engagement</p>
+        <hr class="pricing-divider">
+        <p class="pricing-desc">For organizations with 100+ employees, multi-state operations, or complex benefits stacks.</p>
+        <ul class="pricing-features">
+          <li>
+            <span class="pricing-check" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Everything in Growth
+          </li>
+          <li>
+            <span class="pricing-check" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Multi-state compliance program
+          </li>
+          <li>
+            <span class="pricing-check" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Custom benefits plan design
+          </li>
+          <li>
+            <span class="pricing-check" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Executive compensation planning
+          </li>
+          <li>
+            <span class="pricing-check" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Board-level reporting
+          </li>
+          <li>
+            <span class="pricing-check" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            White-glove implementation
+          </li>
         </ul>
-        <a href="contact.html" class="btn btn-secondary" style="width:100%; justify-content:center;">Contact Sales</a>
+        <a href="contact.html" class="btn btn-secondary" style="width:100%; justify-content:center; text-align:center;">Contact Sales</a>
       </div>
+
     </div>
-    <p style="text-align:center; margin-top: 48px; color: var(--ink-300); font-size: 14px; max-width: 60ch; margin-left: auto; margin-right: auto;">Placeholder tier prices marked <span class="confirm-inline" data-unverified="true">[CONFIRM]</span> will be finalized with the client before launch. All pricing is per-employee-per-month with no long term contract.</p>
+
+    <p class="pricing-disclaimer" data-animate>
+      Placeholder tier prices marked <span class="confirm-inline" data-unverified="true">[CONFIRM]</span> will be finalized with the client before launch. All pricing is per-employee-per-month with no long term contract.
+    </p>
   </div>
 </section>
 
+<!-- ── What's Included ── -->
 <section class="band band-cream">
   <div class="container">
-    <div class="reveal" style="max-width: 60ch; margin-bottom: 48px;">
+    <div data-animate style="max-width: 60ch; margin-bottom: 56px;">
       <p class="eyebrow">What is Included</p>
-      <h2>Every Tier Includes.</h2>
+      <h2 class="playfair section-heading-premium">Every Tier Includes.</h2>
+      <span class="title-gold-accent title-gold-accent--left" aria-hidden="true"></span>
     </div>
-    <div class="grid grid-3">
-      <div class="card reveal"><h4>No Long Term Contracts</h4><p>Month-to-month agreements with 30 days notice.</p></div>
-      <div class="card reveal"><h4>Local Team</h4><p>Named HR consultant, payroll specialist, and benefits advisor based in Utah.</p></div>
-      <div class="card reveal"><h4>Broker Friendly</h4><p>Keep your current health insurance broker if you have one.</p></div>
-      <div class="card reveal"><h4>No Setup Fees</h4><p>Onboarding is included in your monthly rate.</p></div>
-      <div class="card reveal"><h4>Transparent Reporting</h4><p>Monthly summary reports and unlimited on-demand queries.</p></div>
-      <div class="card reveal"><h4>Employee App</h4><p>Mobile app for pay stubs, benefits, and PTO requests at no extra charge.</p></div>
+    <div class="included-grid">
+      <div class="included-card" data-animate data-animate-delay="1">
+        <h4>No Long Term Contracts</h4>
+        <p>Month-to-month agreements with 30 days notice.</p>
+      </div>
+      <div class="included-card" data-animate data-animate-delay="2">
+        <h4>Local Team</h4>
+        <p>Named HR consultant, payroll specialist, and benefits advisor based in Utah.</p>
+      </div>
+      <div class="included-card" data-animate data-animate-delay="3">
+        <h4>Broker Friendly</h4>
+        <p>Keep your current health insurance broker if you have one.</p>
+      </div>
+      <div class="included-card" data-animate data-animate-delay="4">
+        <h4>No Setup Fees</h4>
+        <p>Onboarding is included in your monthly rate.</p>
+      </div>
+      <div class="included-card" data-animate data-animate-delay="5">
+        <h4>Transparent Reporting</h4>
+        <p>Monthly summary reports and unlimited on-demand queries.</p>
+      </div>
+      <div class="included-card" data-animate data-animate-delay="6">
+        <h4>Employee App</h4>
+        <p>Mobile app for pay stubs, benefits, and PTO requests at no extra charge.</p>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- ── CTA Band ── -->
 <section class="band band-navy">
   <div class="container" style="text-align:center;">
-    <p class="eyebrow" style="justify-content:center;">Ready to Talk</p>
-    <h2 style="max-width: 22ch; margin: 0 auto 24px;">Let's Build Something Simpler for Your Team.</h2>
-    <p style="max-width: 60ch; margin: 0 auto 40px; color: rgba(255,255,255,0.85);">Book a 30 minute conversation with a Helpside specialist. No pressure, no long term contracts. Just a plan that works.</p>
-    <a href="contact.html" class="btn btn-primary">Request a Consultation</a>
+    <p class="eyebrow" style="justify-content:center;" data-animate>Ready to Talk</p>
+    <h2 class="playfair" style="max-width: 22ch; margin: 0 auto 24px;" data-animate data-animate-delay="1">Let's Build Something Simpler for Your Team.</h2>
+    <span class="title-gold-accent" style="margin-bottom: 32px;" aria-hidden="true" data-animate data-animate-delay="2"></span>
+    <p style="max-width: 60ch; margin: 0 auto 40px; color: rgba(255,255,255,0.85); font-family: 'Inter', 'Hind', sans-serif;" data-animate data-animate-delay="3">Book a 30 minute conversation with a Helpside specialist. No pressure, no long term contracts. Just a plan that works.</p>
+    <a href="contact.html" class="btn-gold" style="display: inline-flex; width: auto; padding: 16px 40px;" data-animate data-animate-delay="4">Request a Consultation</a>
   </div>
 </section>
 
-
 </main>
+
 <footer class="site-footer">
   <div class="container">
     <div class="site-footer__grid">
@@ -179,7 +550,8 @@
     </div>
   </div>
 </footer>
-<!-- A11Y toolbar (accessibility feature from onboarding) -->
+
+<!-- A11Y toolbar -->
 <div id="a11y-toolbar" data-a11y-toolbar role="toolbar" aria-label="Accessibility tools">
   <button type="button" data-a11y="text-size" aria-pressed="false" title="Increase text size" aria-label="Increase text size"><span>A+</span></button>
   <button type="button" data-a11y="contrast" aria-pressed="false" title="High contrast" aria-label="Toggle high contrast">
@@ -190,7 +562,7 @@
   </button>
 </div>
 
-<!-- Chat launcher (live_chat placeholder pending client-supplied provider or FAQ knowledge base) -->
+<!-- Chat launcher -->
 <button id="chat-launcher" data-missing-asset="live_chat_provider" aria-label="Chat with Helpside" aria-expanded="false">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
 </button>
@@ -206,5 +578,21 @@
 </div>
 
 <script src="js/site.js" defer></script>
+<script>
+  // Scroll-based fade-in-up for [data-animate] elements
+  (function () {
+    var elements = document.querySelectorAll('[data-animate]');
+    if (!elements.length) return;
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    elements.forEach(function (el) { observer.observe(el); });
+  })();
+</script>
 </body>
 </html>

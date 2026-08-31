@@ -15,11 +15,203 @@
 <link rel="icon" type="image/svg+xml" href="assets/helpside-logo.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Hind:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Hind:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/base.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://kinggavint.github.io/helpside-preview-v2/"},{"@type":"ListItem","position":2,"name":"How It Works","item":"https://kinggavint.github.io/helpside-preview-v2/how-it-works.html"}]}
 </script>
+<style>
+  /* ── Premium upgrade styles for how-it-works.html ── */
+
+  /* Google Fonts usage */
+  .playfair { font-family: 'Playfair Display', Georgia, serif; }
+
+  /* Hero overlay depth */
+  .hero-short {
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10,26,60,0.82) 0%, rgba(10,26,60,0.55) 60%, rgba(180,144,60,0.18) 100%);
+    z-index: 0;
+    pointer-events: none;
+  }
+  .hero-short .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Gold accent rule beneath page title */
+  .hero-gold-rule {
+    display: block;
+    width: 64px;
+    height: 3px;
+    background: linear-gradient(90deg, #c9a84c, #e8d5a3, #c9a84c);
+    border-radius: 2px;
+    margin: 18px auto 28px;
+  }
+
+  /* Step badge — elegant gold/navy circular badge */
+  .step-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #c9a84c 0%, #e8d5a3 50%, #b8912e 100%);
+    color: #0a1a3c;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 18px rgba(201,168,76,0.35), 0 1px 4px rgba(0,0,0,0.12);
+    flex-shrink: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  /* Step connector line between steps (desktop) */
+  .step-connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 0;
+  }
+  .step-connector__line {
+    width: 2px;
+    height: 48px;
+    background: linear-gradient(180deg, #c9a84c 0%, rgba(201,168,76,0.2) 100%);
+    margin: 0 auto;
+  }
+
+  /* Split body with badge alignment */
+  .split__body {
+    display: flex;
+    flex-direction: column;
+  }
+  .split__body-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .split__body-text {
+    flex: 1;
+  }
+
+  /* Step card hover subtle lift */
+  .band .split {
+    transition: transform 0.35s ease;
+  }
+
+  /* Heading upgrades */
+  .step-heading {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  /* Section heading gold accent */
+  .section-gold-accent {
+    display: block;
+    width: 48px;
+    height: 2px;
+    background: linear-gradient(90deg, #c9a84c, #e8d5a3, #c9a84c);
+    border-radius: 2px;
+    margin: 12px 0 20px;
+  }
+  .section-gold-accent--center {
+    margin: 12px auto 20px;
+  }
+
+  /* Premium gold gradient CTA button */
+  .btn-gold {
+    display: inline-block;
+    padding: 14px 36px;
+    background: linear-gradient(135deg, #c9a84c 0%, #e8d5a3 50%, #b8912e 100%);
+    color: #0a1a3c !important;
+    font-family: 'Inter', 'Hind', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-radius: 3px;
+    border: none;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(201,168,76,0.4), 0 1px 4px rgba(0,0,0,0.1);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+    cursor: pointer;
+  }
+  .btn-gold:hover,
+  .btn-gold:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(201,168,76,0.55), 0 2px 8px rgba(0,0,0,0.15);
+    filter: brightness(1.06);
+  }
+
+  /* Scroll-based animation */
+  [data-animate] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1);
+  }
+  [data-animate].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  [data-animate][data-delay="1"] { transition-delay: 0.1s; }
+  [data-animate][data-delay="2"] { transition-delay: 0.2s; }
+  [data-animate][data-delay="3"] { transition-delay: 0.3s; }
+  [data-animate][data-delay="4"] { transition-delay: 0.4s; }
+
+  /* Eyebrow refinement */
+  .eyebrow {
+    font-family: 'Inter', 'Hind', sans-serif;
+    letter-spacing: 0.12em;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #c9a84c;
+  }
+
+  /* Step image premium frame */
+  .split__media img {
+    border-radius: 6px;
+    box-shadow: 0 8px 40px rgba(10,26,60,0.14), 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  .split__media img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 16px 56px rgba(10,26,60,0.2), 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  /* CTA band refinement */
+  .band-navy {
+    position: relative;
+    overflow: hidden;
+  }
+  .band-navy::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 60% 50%, rgba(201,168,76,0.10) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Reduce motion */
+  @media (prefers-reduced-motion: reduce) {
+    [data-animate] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    .btn-gold, .split__media img, .step-badge {
+      transition: none;
+    }
+  }
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -50,83 +242,150 @@
 <main id="main">
 
 <section class="hero hero-short">
+  <div class="hero-overlay" aria-hidden="true"></div>
   <div class="container">
-    <p class="eyebrow">Our Process</p>
-    <h1>Five Steps From First Call to Fully Onboarded.</h1>
-    <p class="lede">Switching to a PEO can feel overwhelming. Helpside makes it a coordinated 30 day process with clear checkpoints, real people, and no surprises.</p>
+    <p class="eyebrow" data-animate>Our Process</p>
+    <h1 class="playfair" data-animate data-delay="1">Five Steps From First Call to Fully Onboarded.</h1>
+    <span class="hero-gold-rule" aria-hidden="true"></span>
+    <p class="lede" data-animate data-delay="2">Switching to a PEO can feel overwhelming. Helpside makes it a coordinated 30 day process with clear checkpoints, real people, and no surprises.</p>
   </div>
 </section>
 
 
+<!-- Step 01: Discover -->
 <section class="band band-cream">
   <div class="container">
-    <div class="split">
-      <div class="split__body reveal">
-        <p class="eyebrow">Step 01</p>
-        <h2>Discover</h2>
-        <p class="lede">We start with a 30 minute conversation. You share what is working, what is broken, and what you need to solve. No sales pitch, just listening.</p>
+    <div class="split" data-animate>
+      <div class="split__body">
+        <div class="split__body-inner">
+          <div>
+            <span class="step-badge" aria-label="Step 1">01</span>
+          </div>
+          <div class="split__body-text">
+            <p class="eyebrow">Step 01</p>
+            <h2 class="step-heading">Discover</h2>
+            <span class="section-gold-accent" aria-hidden="true"></span>
+            <p class="lede">We start with a 30 minute conversation. You share what is working, what is broken, and what you need to solve. No sales pitch, just listening.</p>
+          </div>
+        </div>
       </div>
-      <div class="split__media reveal">
+      <div class="split__media" data-animate data-delay="2">
         <img src="assets/photos/photo-01-specialist-desk.jpg" alt="Helpside discover step visual.">
       </div>
     </div>
   </div>
 </section>
 
+<!-- Step connector -->
+<div class="step-connector" aria-hidden="true">
+  <div class="step-connector__line"></div>
+</div>
+
+<!-- Step 02: Assess -->
 <section class="band">
   <div class="container">
-    <div class="split split-reverse">
-      <div class="split__body reveal">
-        <p class="eyebrow">Step 02</p>
-        <h2>Assess</h2>
-        <p class="lede">Our team reviews your current payroll setup, benefits plans, HR policies, and compliance posture. You get a written summary of gaps, risks, and quick wins.</p>
+    <div class="split split-reverse" data-animate>
+      <div class="split__body">
+        <div class="split__body-inner">
+          <div>
+            <span class="step-badge" aria-label="Step 2">02</span>
+          </div>
+          <div class="split__body-text">
+            <p class="eyebrow">Step 02</p>
+            <h2 class="step-heading">Assess</h2>
+            <span class="section-gold-accent" aria-hidden="true"></span>
+            <p class="lede">Our team reviews your current payroll setup, benefits plans, HR policies, and compliance posture. You get a written summary of gaps, risks, and quick wins.</p>
+          </div>
+        </div>
       </div>
-      <div class="split__media reveal">
+      <div class="split__media" data-animate data-delay="2">
         <img src="assets/photos/photo-02-consultation.jpg" alt="Helpside assess step visual.">
       </div>
     </div>
   </div>
 </section>
 
+<!-- Step connector -->
+<div class="step-connector" aria-hidden="true">
+  <div class="step-connector__line"></div>
+</div>
+
+<!-- Step 03: Transition -->
 <section class="band band-cream">
   <div class="container">
-    <div class="split">
-      <div class="split__body reveal">
-        <p class="eyebrow">Step 03</p>
-        <h2>Transition</h2>
-        <p class="lede">We handle the switch. Payroll data migration, benefits enrollment, employee communication, and handbook updates all happen in a coordinated 30 day plan.</p>
+    <div class="split" data-animate>
+      <div class="split__body">
+        <div class="split__body-inner">
+          <div>
+            <span class="step-badge" aria-label="Step 3">03</span>
+          </div>
+          <div class="split__body-text">
+            <p class="eyebrow">Step 03</p>
+            <h2 class="step-heading">Transition</h2>
+            <span class="section-gold-accent" aria-hidden="true"></span>
+            <p class="lede">We handle the switch. Payroll data migration, benefits enrollment, employee communication, and handbook updates all happen in a coordinated 30 day plan.</p>
+          </div>
+        </div>
       </div>
-      <div class="split__media reveal">
+      <div class="split__media" data-animate data-delay="2">
         <img src="assets/photos/photo-03-safety-walkthrough.jpg" alt="Helpside transition step visual.">
       </div>
     </div>
   </div>
 </section>
 
+<!-- Step connector -->
+<div class="step-connector" aria-hidden="true">
+  <div class="step-connector__line"></div>
+</div>
+
+<!-- Step 04: Integrate -->
 <section class="band">
   <div class="container">
-    <div class="split split-reverse">
-      <div class="split__body reveal">
-        <p class="eyebrow">Step 04</p>
-        <h2>Integrate</h2>
-        <p class="lede">Your employees log in to a single portal for pay stubs, benefits, PTO requests, and W-2s. Your leadership team gets a named HR consultant on speed dial.</p>
+    <div class="split split-reverse" data-animate>
+      <div class="split__body">
+        <div class="split__body-inner">
+          <div>
+            <span class="step-badge" aria-label="Step 4">04</span>
+          </div>
+          <div class="split__body-text">
+            <p class="eyebrow">Step 04</p>
+            <h2 class="step-heading">Integrate</h2>
+            <span class="section-gold-accent" aria-hidden="true"></span>
+            <p class="lede">Your employees log in to a single portal for pay stubs, benefits, PTO requests, and W-2s. Your leadership team gets a named HR consultant on speed dial.</p>
+          </div>
+        </div>
       </div>
-      <div class="split__media reveal">
+      <div class="split__media" data-animate data-delay="2">
         <img src="assets/photos/photo-04-team.jpg" alt="Helpside integrate step visual.">
       </div>
     </div>
   </div>
 </section>
 
+<!-- Step connector -->
+<div class="step-connector" aria-hidden="true">
+  <div class="step-connector__line"></div>
+</div>
+
+<!-- Step 05: Grow With Us -->
 <section class="band band-cream">
   <div class="container">
-    <div class="split">
-      <div class="split__body reveal">
-        <p class="eyebrow">Step 05</p>
-        <h2>Grow With Us</h2>
-        <p class="lede">Quarterly reviews, annual benefits renewals, and proactive compliance updates. Helpside scales with you as you hire, expand states, or restructure.</p>
+    <div class="split" data-animate>
+      <div class="split__body">
+        <div class="split__body-inner">
+          <div>
+            <span class="step-badge" aria-label="Step 5">05</span>
+          </div>
+          <div class="split__body-text">
+            <p class="eyebrow">Step 05</p>
+            <h2 class="step-heading">Grow With Us</h2>
+            <span class="section-gold-accent" aria-hidden="true"></span>
+            <p class="lede">Quarterly reviews, annual benefits renewals, and proactive compliance updates. Helpside scales with you as you hire, expand states, or restructure.</p>
+          </div>
+        </div>
       </div>
-      <div class="split__media reveal">
+      <div class="split__media" data-animate data-delay="2">
         <img src="assets/photos/photo-05-office-exterior.jpg" alt="Helpside grow with us step visual.">
       </div>
     </div>
@@ -136,10 +395,11 @@
 
 <section class="band band-navy">
   <div class="container" style="text-align:center;">
-    <p class="eyebrow" style="justify-content:center;">Ready to Talk</p>
-    <h2 style="max-width: 22ch; margin: 0 auto 24px;">Let's Build Something Simpler for Your Team.</h2>
-    <p style="max-width: 60ch; margin: 0 auto 40px; color: rgba(255,255,255,0.85);">Book a 30 minute conversation with a Helpside specialist. No pressure, no long term contracts. Just a plan that works.</p>
-    <a href="contact.html" class="btn btn-primary">Request a Consultation</a>
+    <p class="eyebrow" style="justify-content:center;" data-animate>Ready to Talk</p>
+    <h2 class="playfair" style="max-width: 22ch; margin: 0 auto 8px;" data-animate data-delay="1">Let's Build Something Simpler for Your Team.</h2>
+    <span class="section-gold-accent section-gold-accent--center" aria-hidden="true" data-animate data-delay="2"></span>
+    <p style="max-width: 60ch; margin: 0 auto 40px; color: rgba(255,255,255,0.85);" data-animate data-delay="2">Book a 30 minute conversation with a Helpside specialist. No pressure, no long term contracts. Just a plan that works.</p>
+    <a href="contact.html" class="btn-gold" data-animate data-delay="3">Request a Consultation</a>
   </div>
 </section>
 
@@ -213,5 +473,21 @@
 </div>
 
 <script src="js/site.js" defer></script>
+<script>
+  // Scroll-based fade-in-up for data-animate elements
+  (function() {
+    var els = document.querySelectorAll('[data-animate]');
+    if (!els.length) return;
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(function(el) { observer.observe(el); });
+  })();
+</script>
 </body>
 </html>

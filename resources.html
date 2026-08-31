@@ -15,11 +15,452 @@
 <link rel="icon" type="image/svg+xml" href="assets/helpside-logo.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Hind:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Hind:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/base.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://kinggavint.github.io/helpside-preview-v2/"},{"@type":"ListItem","position":2,"name":"Client Resources","item":"https://kinggavint.github.io/helpside-preview-v2/resources.html"}]}
 </script>
+
+<style>
+  /* ── Premium Resources Page Styles ── */
+
+  /* CSS Variables */
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E2C97E;
+    --gold-dark: #A8872E;
+    --navy: #0D1B2A;
+    --navy-mid: #162337;
+    --ivory: #FAF7F2;
+    --champagne: #F5ECD7;
+  }
+
+  /* ── Hero Premium Overlay ── */
+  .hero-short {
+    position: relative;
+    background: linear-gradient(135deg, var(--navy) 0%, #1a2e45 50%, #0f2338 100%);
+    overflow: hidden;
+    padding: 100px 0 80px;
+  }
+
+  .hero-short::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(201, 168, 76, 0.12) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(201, 168, 76, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .hero-short::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      160deg,
+      rgba(13, 27, 42, 0.85) 0%,
+      rgba(13, 27, 42, 0.6) 50%,
+      rgba(13, 27, 42, 0.75) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .hero-short .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ── Playfair Headings ── */
+  .playfair,
+  .hero-short h1,
+  .resources-section-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-short h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .hero-short .eyebrow {
+    color: var(--gold-light);
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    margin-bottom: 16px;
+  }
+
+  .hero-short .lede {
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 300;
+    max-width: 56ch;
+    line-height: 1.7;
+  }
+
+  /* ── Gold Accent Line ── */
+  .gold-accent-line {
+    display: block;
+    width: 64px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    margin: 20px 0 32px;
+    border-radius: 2px;
+  }
+
+  .gold-accent-line--center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ── Section Headings ── */
+  .resources-section-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    color: var(--navy);
+    margin-bottom: 8px;
+    line-height: 1.25;
+  }
+
+  .band-cream .resources-section-title {
+    color: var(--navy);
+  }
+
+  .band-navy .resources-section-title {
+    color: #fff;
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+
+  /* ── Premium Resource Cards ── */
+  .resource-card {
+    background: #fff;
+    border: 1px solid rgba(201, 168, 76, 0.15);
+    border-radius: 12px;
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .resource-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold-light));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .resource-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(13, 27, 42, 0.12), 0 4px 16px rgba(201, 168, 76, 0.1);
+    border-color: rgba(201, 168, 76, 0.35);
+  }
+
+  .resource-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  /* ── Resource Card Icons ── */
+  .resource-card__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(201, 168, 76, 0.12), rgba(201, 168, 76, 0.06));
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    margin-bottom: 24px;
+    color: var(--gold-dark);
+    transition: background 0.3s ease, transform 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .resource-card:hover .resource-card__icon {
+    background: linear-gradient(135deg, rgba(201, 168, 76, 0.2), rgba(201, 168, 76, 0.1));
+    transform: scale(1.05);
+  }
+
+  .resource-card h3 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+
+  .resource-card p {
+    font-family: 'Inter', sans-serif;
+    color: #4a5568;
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .resource-card .card-meta {
+    color: #9aa0ad;
+    font-size: 0.8rem;
+    margin-top: 10px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* ── Premium Buttons on Cards ── */
+  .resource-card .btn-primary {
+    margin-top: auto;
+    padding-top: 24px;
+    align-self: flex-start;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+    border: none;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    padding: 14px 28px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    margin-top: 28px;
+  }
+
+  .resource-card .btn-primary:hover {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    transform: translateX(3px);
+    box-shadow: 0 4px 16px rgba(201, 168, 76, 0.35);
+  }
+
+  .resource-card .btn-secondary {
+    margin-top: 28px;
+    align-self: flex-start;
+    background: transparent;
+    border: 1.5px solid var(--gold);
+    color: var(--navy);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    padding: 13px 28px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+  }
+
+  .resource-card .btn-secondary:hover {
+    background: rgba(201, 168, 76, 0.08);
+    border-color: var(--gold-dark);
+    color: var(--navy);
+    transform: translateX(3px);
+  }
+
+  /* ── Support Cards (3 col) ── */
+  .support-card {
+    background: #fff;
+    border: 1px solid rgba(13, 27, 42, 0.08);
+    border-radius: 12px;
+    padding: 36px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                border-color 0.3s ease;
+  }
+
+  .support-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 24px;
+    right: 24px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+    border-radius: 2px;
+  }
+
+  .support-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 48px rgba(13, 27, 42, 0.1);
+    border-color: rgba(201, 168, 76, 0.25);
+  }
+
+  .support-card:hover::after {
+    transform: scaleX(1);
+  }
+
+  .support-card__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(201, 168, 76, 0.1), rgba(201, 168, 76, 0.04));
+    border: 1px solid rgba(201, 168, 76, 0.18);
+    margin-bottom: 20px;
+    color: var(--gold-dark);
+    transition: transform 0.3s ease;
+  }
+
+  .support-card:hover .support-card__icon {
+    transform: scale(1.08) rotate(-3deg);
+  }
+
+  .support-card h4 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+
+  .support-card p {
+    font-family: 'Inter', sans-serif;
+    color: #5a6475;
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+
+  .support-card .card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--gold-dark);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: 0.02em;
+    margin-top: 14px;
+    text-decoration: none;
+    transition: gap 0.2s ease, color 0.2s ease;
+  }
+
+  .support-card .card__link:hover {
+    gap: 10px;
+    color: var(--gold);
+  }
+
+  /* ── CTA Band ── */
+  .band-navy {
+    background: linear-gradient(135deg, var(--navy) 0%, #1a2e45 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .band-navy::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(201, 168, 76, 0.1) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .band-navy .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .band-navy h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: #fff;
+  }
+
+  .band-navy .btn-primary {
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    border: none;
+    padding: 16px 36px;
+    border-radius: 6px;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .band-navy .btn-primary:hover {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(201, 168, 76, 0.4);
+  }
+
+  /* ── Scroll-triggered Animations ── */
+  [data-animate] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  [data-animate].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  [data-animate-delay="1"] { transition-delay: 0.1s; }
+  [data-animate-delay="2"] { transition-delay: 0.2s; }
+  [data-animate-delay="3"] { transition-delay: 0.3s; }
+  [data-animate-delay="4"] { transition-delay: 0.4s; }
+
+  /* ── Band Cream Background ── */
+  .band-cream {
+    background: var(--ivory);
+  }
+
+  /* ── Eyebrow in sections ── */
+  .section-eyebrow {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-bottom: 12px;
+  }
+
+  /* ── Confirm inline ── */
+  .confirm-inline[data-unverified="true"] {
+    color: #c0392b;
+    font-size: 0.8em;
+    font-style: italic;
+  }
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -49,75 +490,113 @@
 
 <main id="main">
 
+<!-- ── Premium Hero ── -->
 <section class="hero hero-short">
+  <div class="hero-overlay"></div>
   <div class="container">
     <p class="eyebrow">Client Resources</p>
-    <h1>Everything Our Clients Need in One Place.</h1>
+    <h1 class="playfair">Everything Our Clients Need in One Place.</h1>
+    <span class="gold-accent-line"></span>
     <p class="lede">Fast access to your payroll portal, benefits information, forms library, and help center. Current clients only.</p>
   </div>
 </section>
 
+<!-- ── Portal Cards ── -->
 <section class="band">
   <div class="container">
     <div class="grid grid-2">
-      <div class="card reveal" data-blocker="portal_url" style="padding: 48px;">
-        <div class="card__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+
+      <div class="resource-card" data-animate data-animate-delay="1" data-blocker="portal_url">
+        <div class="resource-card__icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
         <h3>Employee &amp; Client Portal Login</h3>
         <p>Access pay stubs, W-2s, PTO requests, benefits information, and direct deposit settings. Available on desktop and mobile.</p>
-        <p style="color: var(--ink-300); font-size: 13px; margin-top: 12px;">Portal URL to be confirmed with client before launch.</p>
-        <a href="#" class="btn btn-primary" style="margin-top: 24px;">Employee Login <span class="confirm-inline" data-unverified="true">[CONFIRM]</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        <p class="card-meta">Portal URL to be confirmed with client before launch.</p>
+        <a href="#" class="btn-primary" style="margin-top: 28px; display:inline-flex; align-items:center; gap:8px; background: linear-gradient(135deg, #A8872E, #C9A84C); color:#fff; font-family:'Inter',sans-serif; font-weight:600; letter-spacing:0.03em; padding:14px 28px; border-radius:6px; text-decoration:none; transition: all 0.3s ease;">
+          Employee Login <span class="confirm-inline" data-unverified="true">[CONFIRM]</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
       </div>
-      <div class="card reveal" style="padding: 48px;">
-        <div class="card__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+
+      <div class="resource-card" data-animate data-animate-delay="2">
+        <div class="resource-card__icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </div>
         <h3>Broker Portal</h3>
         <p>For insurance brokers working with Helpside clients. Submit renewals, review census data, and download group summaries.</p>
-        <p style="color: var(--ink-300); font-size: 13px; margin-top: 12px;">Broker portal URL to be confirmed with client before launch.</p>
-        <a href="#" class="btn btn-secondary" style="margin-top: 24px;">Broker Login <span class="confirm-inline" data-unverified="true">[CONFIRM]</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        <p class="card-meta">Broker portal URL to be confirmed with client before launch.</p>
+        <a href="#" style="margin-top: 28px; display:inline-flex; align-items:center; gap:8px; background: transparent; border: 1.5px solid #C9A84C; color: #0D1B2A; font-family:'Inter',sans-serif; font-weight:600; letter-spacing:0.03em; padding:13px 28px; border-radius:6px; text-decoration:none; transition: all 0.3s ease;">
+          Broker Login <span class="confirm-inline" data-unverified="true">[CONFIRM]</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
       </div>
+
     </div>
   </div>
 </section>
 
+<!-- ── Support Section ── -->
 <section class="band band-cream">
   <div class="container">
-    <div class="reveal" style="max-width: 60ch; margin-bottom: 48px;">
-      <p class="eyebrow">Help &amp; Support</p>
-      <h2>Get Help Fast.</h2>
+    <div data-animate style="max-width: 60ch; margin-bottom: 48px;">
+      <span class="section-eyebrow">Help &amp; Support</span>
+      <h2 class="resources-section-title">Get Help Fast.</h2>
+      <span class="gold-accent-line"></span>
     </div>
+
     <div class="grid grid-3">
-      <div class="card reveal">
-        <div class="card__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+
+      <div class="support-card" data-animate data-animate-delay="1">
+        <div class="support-card__icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
         <h4>Call Us</h4>
         <p>Monday through Friday, 8 AM to 5 PM Mountain.</p>
-        <a href="tel:+18007485102" class="card__link confirm-inline" data-unverified="true">[CONFIRM: (800) 748-5102] <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        <a href="tel:+18007485102" class="card__link confirm-inline" data-unverified="true">
+          [CONFIRM: (800) 748-5102]
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
       </div>
-      <div class="card reveal">
-        <div class="card__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+
+      <div class="support-card" data-animate data-animate-delay="2">
+        <div class="support-card__icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
         <h4>Live Chat</h4>
         <p>Chat with a real Helpside team member during business hours. Placeholder for the client's chat widget.</p>
-        <p class="card__link" style="color: var(--ink-300);">Live chat widget <span class="confirm-inline" data-unverified="true">[CONFIRM]</span></p>
+        <p class="card__link" style="color: #9aa0ad; font-family:'Inter',sans-serif; font-size:0.875rem; margin-top:14px;">Live chat widget <span class="confirm-inline" data-unverified="true">[CONFIRM]</span></p>
       </div>
-      <div class="card reveal">
-        <div class="card__icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+
+      <div class="support-card" data-animate data-animate-delay="3">
+        <div class="support-card__icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </div>
         <h4>Help Center</h4>
         <p>Search articles, guides, and how-to videos. Written by our HR and payroll specialists.</p>
-        <a href="#" class="card__link">Browse articles <span class="confirm-inline" data-unverified="true">[CONFIRM]</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        <a href="#" class="card__link">
+          Browse articles <span class="confirm-inline" data-unverified="true">[CONFIRM]</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
       </div>
+
     </div>
   </div>
 </section>
 
+<!-- ── CTA Band ── -->
 <section class="band band-navy">
-  <div class="container" style="text-align:center;">
-    <p class="eyebrow" style="justify-content:center;">Ready to Talk</p>
-    <h2 style="max-width: 22ch; margin: 0 auto 24px;">Let's Build Something Simpler for Your Team.</h2>
-    <p style="max-width: 60ch; margin: 0 auto 40px; color: rgba(255,255,255,0.85);">Book a 30 minute conversation with a Helpside specialist. No pressure, no long term contracts. Just a plan that works.</p>
-    <a href="contact.html" class="btn btn-primary">Request a Consultation</a>
+  <div class="container" style="text-align:center;" data-animate>
+    <p class="eyebrow" style="justify-content:center; color: #E2C97E; font-family:'Inter',sans-serif; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; font-size:0.75rem;">Ready to Talk</p>
+    <h2 class="playfair" style="max-width: 22ch; margin: 16px auto 24px; color:#fff; font-size: clamp(1.6rem, 3vw, 2.4rem);">Let's Build Something Simpler for Your Team.</h2>
+    <span class="gold-accent-line gold-accent-line--center"></span>
+    <p style="max-width: 60ch; margin: 0 auto 40px; color: rgba(255,255,255,0.8); font-family:'Inter',sans-serif; font-size:1rem; line-height:1.7;">Book a 30 minute conversation with a Helpside specialist. No pressure, no long term contracts. Just a plan that works.</p>
+    <a href="contact.html" style="display:inline-block; background: linear-gradient(135deg, #A8872E, #C9A84C); color:#fff; font-family:'Inter',sans-serif; font-weight:600; letter-spacing:0.03em; padding:16px 36px; border-radius:6px; font-size:1rem; text-decoration:none; transition: all 0.3s ease;">Request a Consultation</a>
   </div>
 </section>
 
-
 </main>
+
 <footer class="site-footer">
   <div class="container">
     <div class="site-footer__grid">
@@ -159,7 +638,8 @@
     </div>
   </div>
 </footer>
-<!-- A11Y toolbar (accessibility feature from onboarding) -->
+
+<!-- A11Y toolbar -->
 <div id="a11y-toolbar" data-a11y-toolbar role="toolbar" aria-label="Accessibility tools">
   <button type="button" data-a11y="text-size" aria-pressed="false" title="Increase text size" aria-label="Increase text size"><span>A+</span></button>
   <button type="button" data-a11y="contrast" aria-pressed="false" title="High contrast" aria-label="Toggle high contrast">
@@ -170,7 +650,7 @@
   </button>
 </div>
 
-<!-- Chat launcher (live_chat placeholder pending client-supplied provider or FAQ knowledge base) -->
+<!-- Chat launcher -->
 <button id="chat-launcher" data-missing-asset="live_chat_provider" aria-label="Chat with Helpside" aria-expanded="false">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
 </button>
@@ -186,5 +666,30 @@
 </div>
 
 <script src="js/site.js" defer></script>
+
+<script>
+  // ── Scroll-triggered animations ──
+  (function () {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      document.querySelectorAll('[data-animate]').forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+  })();
+</script>
 </body>
 </html>

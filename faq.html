@@ -15,11 +15,263 @@
 <link rel="icon" type="image/svg+xml" href="assets/helpside-logo.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Hind:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Archivo+Black&family=Hind:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/base.css">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is a PEO and how is it different from a payroll company?", "acceptedAnswer": {"@type": "Answer", "text": "A Professional Employer Organization enters a co-employment relationship with your business. Helpside handles HR administration, payroll, benefits, and workers compensation under our federal tax ID, while you retain full control of daily operations, hiring, and firing. A payroll company only cuts checks. A PEO manages the whole employment lifecycle."}}, {"@type": "Question", "name": "Do we have to change our current health insurance broker?", "acceptedAnswer": {"@type": "Answer", "text": "No. Helpside works alongside your broker. Many of our clients keep their existing broker relationship while gaining access to our master medical plans and lower rates."}}, {"@type": "Question", "name": "Are we locked into a long term contract?", "acceptedAnswer": {"@type": "Answer", "text": "No. Helpside agreements are month-to-month with 30 days notice. If we are not the right fit, you can leave."}}, {"@type": "Question", "name": "How does co-employment affect our business?", "acceptedAnswer": {"@type": "Answer", "text": "You keep full control over hiring, firing, day-to-day management, and business strategy. Helpside becomes the employer of record for tax filings and benefits administration. Your employees remain your employees in every meaningful sense."}}, {"@type": "Question", "name": "Will our employees have to change their health insurance?", "acceptedAnswer": {"@type": "Answer", "text": "Employees will move to Helpside master medical, dental, and vision plans during your next open enrollment. Most employees see better plan options and lower premiums after the switch."}}, {"@type": "Question", "name": "How long does the onboarding process take?", "acceptedAnswer": {"@type": "Answer", "text": "Our standard implementation is 30 days from signed agreement to first payroll on the Helpside system. Complex cases with multi-state operations or executive benefits can take 45 to 60 days."}}, {"@type": "Question", "name": "What states does Helpside serve?", "acceptedAnswer": {"@type": "Answer", "text": "Helpside actively serves clients in Utah, Idaho, Wyoming, Nevada, Colorado, Kansas, Missouri, Tennessee, and Texas. We can support businesses in additional states on request."}}, {"@type": "Question", "name": "Do you help with workers compensation claims?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Workers compensation coverage is included in our Growth and Enterprise tiers. We handle claims filing, injury investigation, return-to-work planning, and OSHA reporting."}}, {"@type": "Question", "name": "Can we integrate Helpside with our accounting software?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Helpside integrates with QuickBooks, Xero, Sage, and most popular general ledger platforms. Payroll journal entries post automatically each cycle."}}, {"@type": "Question", "name": "What happens if we need to lay off employees?", "acceptedAnswer": {"@type": "Answer", "text": "Your dedicated HR consultant walks you through the process from planning through separation. We handle WARN Act notices, severance agreement drafting, unemployment claim response, and COBRA administration."}}, {"@type": "Question", "name": "Is there an employee mobile app?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Every employee gets access to a mobile app for pay stubs, W-2s, PTO requests, benefits information, and direct deposit management. Included at no extra cost."}}, {"@type": "Question", "name": "How do we get started?", "acceptedAnswer": {"@type": "Answer", "text": "Book a 30 minute conversation through our contact form. No sales pitch, no obligation. If Helpside is a fit, we will send a proposal within a week."}}]}</script><script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://kinggavint.github.io/helpside-preview-v2/"},{"@type":"ListItem","position":2,"name":"FAQ","item":"https://kinggavint.github.io/helpside-preview-v2/faq.html"}]}
 </script>
+
+<style>
+  /* ── Premium FAQ Page Styles ── */
+
+  /* Hero overlay */
+  .hero-short {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0d1b2e 0%, #1a2f4e 60%, #0d1b2e 100%);
+    padding: 100px 0 80px;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      160deg,
+      rgba(0,0,0,0.55) 0%,
+      rgba(13,27,46,0.70) 50%,
+      rgba(0,0,0,0.45) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .hero-short .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-short .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #c9a84c;
+    margin-bottom: 16px;
+  }
+
+  .hero-short h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2rem, 4.5vw, 3.25rem);
+    font-weight: 700;
+    color: #f5f0e8;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.35);
+  }
+
+  .hero-short .lede {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: rgba(245,240,232,0.82);
+    max-width: 58ch;
+    line-height: 1.7;
+  }
+
+  /* Gold accent line */
+  .hero-title-accent {
+    display: block;
+    width: 72px;
+    height: 2px;
+    background: linear-gradient(90deg, #c9a84c, #e8d5a3, #c9a84c);
+    margin: 22px 0 32px;
+    border-radius: 2px;
+  }
+
+  /* FAQ Section */
+  .faq-section {
+    background: #f8f6f1;
+    padding: 80px 0 100px;
+  }
+
+  .faq-section .container {
+    max-width: 860px;
+  }
+
+  /* FAQ Item — premium accordion */
+  .faq-item {
+    border: none;
+    border-bottom: 1px solid rgba(180,160,110,0.25);
+    background: transparent;
+    margin-bottom: 0;
+    transition: all 0.3s ease;
+    border-radius: 0;
+    overflow: hidden;
+  }
+
+  .faq-item:first-of-type {
+    border-top: 1px solid rgba(180,160,110,0.25);
+  }
+
+  .faq-item summary {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.08rem;
+    font-weight: 600;
+    color: #1a2f4e;
+    padding: 24px 52px 24px 6px;
+    cursor: pointer;
+    list-style: none;
+    position: relative;
+    transition: color 0.25s ease;
+    line-height: 1.45;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  /* Gold chevron icon */
+  .faq-item summary::after {
+    content: '';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%) rotate(0deg);
+    width: 20px;
+    height: 20px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c9a84c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .faq-item[open] summary::after {
+    transform: translateY(-50%) rotate(180deg);
+  }
+
+  /* Active/open state — gold accent left border */
+  .faq-item[open] {
+    background: rgba(201,168,76,0.04);
+    border-left: 3px solid #c9a84c;
+    padding-left: 18px;
+  }
+
+  .faq-item[open] summary {
+    color: #c9a84c;
+    padding-bottom: 14px;
+  }
+
+  .faq-item p {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.97rem;
+    font-weight: 400;
+    color: #4a4a5a;
+    line-height: 1.8;
+    padding: 0 52px 26px 6px;
+    margin: 0;
+    animation: faqOpen 0.35s ease forwards;
+  }
+
+  @keyframes faqOpen {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .faq-item summary:hover {
+    color: #c9a84c;
+  }
+
+  /* Scroll animation */
+  [data-animate] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  [data-animate].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* CTA band */
+  .band-navy {
+    background: linear-gradient(135deg, #0d1b2e 0%, #1a2f4e 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .band-navy::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(201,168,76,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .band-navy h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    color: #f5f0e8;
+  }
+
+  .band-navy .eyebrow {
+    color: #c9a84c;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .band-navy .eyebrow::before,
+  .band-navy .eyebrow::after {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 32px;
+    background: rgba(201,168,76,0.5);
+  }
+
+  /* FAQ section heading */
+  .faq-section-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: #1a2f4e;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  .faq-intro-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.97rem;
+    color: #6b6b7b;
+    text-align: center;
+    max-width: 52ch;
+    margin: 0 auto 48px;
+    line-height: 1.7;
+  }
+
+  .faq-section-accent {
+    display: block;
+    width: 56px;
+    height: 2px;
+    background: linear-gradient(90deg, #c9a84c, #e8d5a3, #c9a84c);
+    margin: 10px auto 28px;
+    border-radius: 2px;
+  }
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -50,27 +302,81 @@
 <main id="main">
 
 <section class="hero hero-short">
+  <div class="hero-overlay" aria-hidden="true"></div>
   <div class="container">
     <p class="eyebrow">Frequently Asked</p>
-    <h1>The Answers Business Owners Ask Us Most.</h1>
+    <h1 class="playfair-heading">The Answers Business Owners Ask Us Most.</h1>
+    <span class="hero-title-accent" aria-hidden="true"></span>
     <p class="lede">Twelve of the questions we hear most from prospective clients. Have a different question? Send us a note and we will get back within one business day.</p>
   </div>
 </section>
 
-<section class="band">
-  <div class="container" style="max-width: 900px;">
-    <details class="faq-item reveal"><summary>What is a PEO and how is it different from a payroll company?</summary><p>A Professional Employer Organization enters a co-employment relationship with your business. Helpside handles HR administration, payroll, benefits, and workers compensation under our federal tax ID, while you retain full control of daily operations, hiring, and firing. A payroll company only cuts checks. A PEO manages the whole employment lifecycle.</p></details>
-<details class="faq-item reveal"><summary>Do we have to change our current health insurance broker?</summary><p>No. Helpside works alongside your broker. Many of our clients keep their existing broker relationship while gaining access to our master medical plans and lower rates.</p></details>
-<details class="faq-item reveal"><summary>Are we locked into a long term contract?</summary><p>No. Helpside agreements are month-to-month with 30 days notice. If we are not the right fit, you can leave.</p></details>
-<details class="faq-item reveal"><summary>How does co-employment affect our business?</summary><p>You keep full control over hiring, firing, day-to-day management, and business strategy. Helpside becomes the employer of record for tax filings and benefits administration. Your employees remain your employees in every meaningful sense.</p></details>
-<details class="faq-item reveal"><summary>Will our employees have to change their health insurance?</summary><p>Employees will move to Helpside master medical, dental, and vision plans during your next open enrollment. Most employees see better plan options and lower premiums after the switch.</p></details>
-<details class="faq-item reveal"><summary>How long does the onboarding process take?</summary><p>Our standard implementation is 30 days from signed agreement to first payroll on the Helpside system. Complex cases with multi-state operations or executive benefits can take 45 to 60 days.</p></details>
-<details class="faq-item reveal"><summary>What states does Helpside serve?</summary><p>Helpside actively serves clients in Utah, Idaho, Wyoming, Nevada, Colorado, Kansas, Missouri, Tennessee, and Texas. We can support businesses in additional states on request.</p></details>
-<details class="faq-item reveal"><summary>Do you help with workers compensation claims?</summary><p>Yes. Workers compensation coverage is included in our Growth and Enterprise tiers. We handle claims filing, injury investigation, return-to-work planning, and OSHA reporting.</p></details>
-<details class="faq-item reveal"><summary>Can we integrate Helpside with our accounting software?</summary><p>Yes. Helpside integrates with QuickBooks, Xero, Sage, and most popular general ledger platforms. Payroll journal entries post automatically each cycle.</p></details>
-<details class="faq-item reveal"><summary>What happens if we need to lay off employees?</summary><p>Your dedicated HR consultant walks you through the process from planning through separation. We handle WARN Act notices, severance agreement drafting, unemployment claim response, and COBRA administration.</p></details>
-<details class="faq-item reveal"><summary>Is there an employee mobile app?</summary><p>Yes. Every employee gets access to a mobile app for pay stubs, W-2s, PTO requests, benefits information, and direct deposit management. Included at no extra cost.</p></details>
-<details class="faq-item reveal"><summary>How do we get started?</summary><p>Book a 30 minute conversation through our contact form. No sales pitch, no obligation. If Helpside is a fit, we will send a proposal within a week.</p></details>
+<section class="faq-section">
+  <div class="container" style="max-width: 860px;">
+
+    <h2 class="faq-section-title">Common Questions</h2>
+    <span class="faq-section-accent" aria-hidden="true"></span>
+    <p class="faq-intro-text">Everything you need to know about PEO services, co-employment, and working with Helpside.</p>
+
+    <details class="faq-item reveal" data-animate>
+      <summary>What is a PEO and how is it different from a payroll company?</summary>
+      <p>A Professional Employer Organization enters a co-employment relationship with your business. Helpside handles HR administration, payroll, benefits, and workers compensation under our federal tax ID, while you retain full control of daily operations, hiring, and firing. A payroll company only cuts checks. A PEO manages the whole employment lifecycle.</p>
+    </details>
+
+    <details class="faq-item reveal" data-animate>
+      <summary>Do we have to change our current health insurance broker?</summary>
+      <p>No. Helpside works alongside your broker. Many of our clients keep their existing broker relationship while gaining access to our master medical plans and lower rates.</p>
+    </details>
+
+    <details class="faq-item reveal" data-animate>
+      <summary>Are we locked into a long term contract?</summary>
+      <p>No. Helpside agreements are month-to-month with 30 days notice. If we are not the right fit, you can leave.</p>
+    </details>
+
+    <details class="faq-item reveal" data-animate>
+      <summary>How does co-employment affect our business?</summary>
+      <p>You keep full control over hiring, firing, day-to-day management, and business strategy. Helpside becomes the employer of record for tax filings and benefits administration. Your employees remain your employees in every meaningful sense.</p>
+    </details>
+
+    <details class="faq-item reveal" data-animate>
+      <summary>Will our employees have to change their health insurance?</summary>
+      <p>Employees will move to Helpside master medical, dental, and vision plans during your next open enrollment. Most employees see better plan options and lower premiums after the switch.</p>
+    </details>
+
+    <details class="faq-item reveal" data-animate>
+      <summary>How long does the onboarding process take?</summary>
+      <p>Our standard implementation is 30 days from signed agreement to first payroll on the Helpside system. Complex cases with multi-state operations or executive benefits can take 45 to 60 days.</p>
+    </details>
+
+    <details class="faq-item reveal" data-animate>
+      <summary>What states does Helpside serve?</summary>
+      <p>Helpside actively serves clients in Utah, Idaho, Wyoming, Nevada, Colorado, Kansas, Missouri, Tennessee, and Texas. We can support businesses in additional states on request.</p>
+    </details>
+
+    <details class="faq-item reveal" data-animate>
+      <summary>Do you help with workers compensation claims?</summary>
+      <p>Yes. Workers compensation coverage is included in our Growth and Enterprise tiers. We handle claims filing, injury investigation, return-to-work planning, and OSHA reporting.</p>
+    </details>
+
+    <details class="faq-item reveal" data-animate>
+      <summary>Can we integrate Helpside with our accounting software?</summary>
+      <p>Yes. Helpside integrates with QuickBooks, Xero, Sage, and most popular general ledger platforms. Payroll journal entries post automatically each cycle.</p>
+    </details>
+
+    <details class="faq-item reveal" data-animate>
+      <summary>What happens if we need to lay off employees?</summary>
+      <p>Your dedicated HR consultant walks you through the process from planning through separation. We handle WARN Act notices, severance agreement drafting, unemployment claim response, and COBRA administration.</p>
+    </details>
+
+    <details class="faq-item reveal" data-animate>
+      <summary>Is there an employee mobile app?</summary>
+      <p>Yes. Every employee gets access to a mobile app for pay stubs, W-2s, PTO requests, benefits information, and direct deposit management. Included at no extra cost.</p>
+    </details>
+
+    <details class="faq-item reveal" data-animate>
+      <summary>How do we get started?</summary>
+      <p>Book a 30 minute conversation through our contact form. No sales pitch, no obligation. If Helpside is a fit, we will send a proposal within a week.</p>
+    </details>
 
   </div>
 </section>
@@ -79,13 +385,13 @@
   <div class="container" style="text-align:center;">
     <p class="eyebrow" style="justify-content:center;">Ready to Talk</p>
     <h2 style="max-width: 22ch; margin: 0 auto 24px;">Let's Build Something Simpler for Your Team.</h2>
-    <p style="max-width: 60ch; margin: 0 auto 40px; color: rgba(255,255,255,0.85);">Book a 30 minute conversation with a Helpside specialist. No pressure, no long term contracts. Just a plan that works.</p>
+    <p style="max-width: 60ch; margin: 0 auto 40px; color: rgba(255,255,255,0.85); font-family: 'Inter', sans-serif;">Book a 30 minute conversation with a Helpside specialist. No pressure, no long term contracts. Just a plan that works.</p>
     <a href="contact.html" class="btn btn-primary">Request a Consultation</a>
   </div>
 </section>
 
-
 </main>
+
 <footer class="site-footer">
   <div class="container">
     <div class="site-footer__grid">
@@ -127,7 +433,8 @@
     </div>
   </div>
 </footer>
-<!-- A11Y toolbar (accessibility feature from onboarding) -->
+
+<!-- A11Y toolbar -->
 <div id="a11y-toolbar" data-a11y-toolbar role="toolbar" aria-label="Accessibility tools">
   <button type="button" data-a11y="text-size" aria-pressed="false" title="Increase text size" aria-label="Increase text size"><span>A+</span></button>
   <button type="button" data-a11y="contrast" aria-pressed="false" title="High contrast" aria-label="Toggle high contrast">
@@ -138,7 +445,7 @@
   </button>
 </div>
 
-<!-- Chat launcher (live_chat placeholder pending client-supplied provider or FAQ knowledge base) -->
+<!-- Chat launcher -->
 <button id="chat-launcher" data-missing-asset="live_chat_provider" aria-label="Chat with Helpside" aria-expanded="false">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
 </button>
@@ -154,5 +461,28 @@
 </div>
 
 <script src="js/site.js" defer></script>
+
+<script>
+  // Scroll-triggered animation observer
+  (function () {
+    var els = document.querySelectorAll('[data-animate]');
+    if (!els.length) return;
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    els.forEach(function (el, i) {
+      // Stagger delay for sequential items
+      el.style.transitionDelay = (i * 0.06) + 's';
+      observer.observe(el);
+    });
+  })();
+</script>
 </body>
 </html>

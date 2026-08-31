@@ -15,8 +15,127 @@
 <link rel="icon" type="image/svg+xml" href="assets/helpside-logo.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Hind:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Hind:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/base.css">
+<style>
+  /* ── Premium About Page Enhancements ── */
+
+  /* Hero overlay for depth */
+  .hero-short {
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-short .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10,25,47,0.82) 0%, rgba(10,25,47,0.55) 60%, rgba(180,145,75,0.18) 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+  .hero-short .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Playfair Display for section headings */
+  .playfair,
+  .hero-short h1,
+  .split__body h2,
+  .band h2,
+  .band-navy h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    letter-spacing: -0.01em;
+  }
+
+  /* Gold accent rule beneath page titles */
+  .gold-accent-rule {
+    display: block;
+    width: 56px;
+    height: 2px;
+    background: linear-gradient(90deg, #b4914b 0%, #d4af6a 50%, #b4914b 100%);
+    border-radius: 2px;
+    margin: 14px 0 28px 0;
+  }
+  .hero-short .gold-accent-rule {
+    margin: 14px auto 28px auto;
+  }
+  .band-navy .gold-accent-rule {
+    margin: 14px auto 28px auto;
+  }
+
+  /* Scroll-based fade-in-up animation */
+  [data-animate] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  [data-animate].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  [data-animate][data-delay="1"] { transition-delay: 0.1s; }
+  [data-animate][data-delay="2"] { transition-delay: 0.2s; }
+  [data-animate][data-delay="3"] { transition-delay: 0.3s; }
+  [data-animate][data-delay="4"] { transition-delay: 0.4s; }
+
+  /* Premium card hover effect */
+  .card {
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(10,25,47,0.13), 0 2px 8px rgba(180,145,75,0.08);
+  }
+
+  /* Team card enhancements */
+  .team-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .team-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(10,25,47,0.12);
+  }
+  .team-avatar {
+    border: 2px solid #d4af6a;
+  }
+
+  /* Gold gradient CTA button */
+  .btn-gold {
+    background: linear-gradient(135deg, #b4914b 0%, #d4af6a 50%, #b4914b 100%);
+    background-size: 200% auto;
+    color: #fff;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    transition: background-position 0.4s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 16px rgba(180,145,75,0.25);
+  }
+  .btn-gold:hover {
+    background-position: right center;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(180,145,75,0.35);
+    color: #fff;
+  }
+
+  /* Inter for body text refinement */
+  .lede, p {
+    font-family: 'Inter', 'Hind', sans-serif;
+  }
+
+  /* Eyebrow refinement */
+  .eyebrow {
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+  }
+
+  /* Split section image with subtle border treatment */
+  .split__media img {
+    border-radius: 4px;
+    box-shadow: 0 12px 40px rgba(10,25,47,0.14), 4px 4px 0 #d4af6a;
+  }
+</style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://kinggavint.github.io/helpside-preview-v2/"},{"@type":"ListItem","position":2,"name":"About","item":"https://kinggavint.github.io/helpside-preview-v2/about.html"}]}
 </script>
@@ -50,23 +169,26 @@
 <main id="main">
 
 <section class="hero hero-short">
-  <div class="container">
-    <p class="eyebrow">About Helpside</p>
-    <h1>Utah Owned. People Focused. Since 1988.</h1>
-    <p class="lede">Helpside was founded to help small and mid-size employers compete for talent, control benefits costs, and stay compliant without hiring an in-house HR department.</p>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="container" style="text-align:center;">
+    <p class="eyebrow" data-animate>About Helpside</p>
+    <h1 class="playfair" data-animate data-delay="1">Utah Owned. People Focused. Since 1988.</h1>
+    <span class="gold-accent-rule" aria-hidden="true"></span>
+    <p class="lede" data-animate data-delay="2">Helpside was founded to help small and mid-size employers compete for talent, control benefits costs, and stay compliant without hiring an in-house HR department.</p>
   </div>
 </section>
 
 <section class="band">
   <div class="container">
     <div class="split">
-      <div class="split__body reveal">
+      <div class="split__body reveal" data-animate>
         <p class="eyebrow">Our Story</p>
-        <h2>Three Decades of Getting HR Right.</h2>
+        <h2 class="playfair">Three Decades of Getting HR Right.</h2>
+        <span class="gold-accent-rule" aria-hidden="true"></span>
         <p>Helpside was founded in Utah in 1988 with a simple idea: business owners should be spending their time serving customers and building products, not chasing tax filings and interpreting benefit summaries.</p>
         <p>Since then, we have grown to support more than 800 businesses across nine states, with a full team of certified HR consultants, payroll specialists, and licensed benefits advisors. All based in the Intermountain West.</p>
       </div>
-      <div class="split__media reveal">
+      <div class="split__media reveal" data-animate data-delay="2">
         <img src="assets/photos/photo-05-office-exterior.jpg" alt="The Helpside office building in Orem, Utah.">
       </div>
     </div>
@@ -75,21 +197,22 @@
 
 <section class="band band-cream">
   <div class="container">
-    <div class="reveal" style="max-width: 60ch; margin-bottom: 60px;">
+    <div class="reveal" style="max-width: 60ch; margin-bottom: 60px;" data-animate>
       <p class="eyebrow">Mission &amp; Values</p>
-      <h2>What Guides Every Decision.</h2>
+      <h2 class="playfair">What Guides Every Decision.</h2>
+      <span class="gold-accent-rule" aria-hidden="true"></span>
     </div>
     <div class="grid grid-3">
-      <div class="card reveal">
-        <h3>Local Relationships</h3>
+      <div class="card reveal" data-animate data-delay="1">
+        <h3 class="playfair">Local Relationships</h3>
         <p>Every client gets a named HR consultant. Same time zone, same office, same face year after year.</p>
       </div>
-      <div class="card reveal">
-        <h3>Transparent Pricing</h3>
+      <div class="card reveal" data-animate data-delay="2">
+        <h3 class="playfair">Transparent Pricing</h3>
         <p>Simple per-employee-per-month pricing. No hidden fees. No surprise renewals.</p>
       </div>
-      <div class="card reveal">
-        <h3>Client Ownership</h3>
+      <div class="card reveal" data-animate data-delay="3">
+        <h3 class="playfair">Client Ownership</h3>
         <p>Month-to-month agreements. If we are not delivering, you can leave. That keeps us accountable.</p>
       </div>
     </div>
@@ -98,16 +221,17 @@
 
 <section class="band">
   <div class="container">
-    <div class="reveal" style="max-width: 60ch; margin-bottom: 60px;">
+    <div class="reveal" style="max-width: 60ch; margin-bottom: 60px;" data-animate>
       <p class="eyebrow">Leadership Team</p>
-      <h2>The People Behind Helpside.</h2>
+      <h2 class="playfair">The People Behind Helpside.</h2>
+      <span class="gold-accent-rule" aria-hidden="true"></span>
       <p class="lede">A team profile card without a real name and title is placeholder content. Helpside team bios and headshots will populate here once provided by the client.</p>
     </div>
     <div class="grid grid-4" data-blocker="team_bios" data-missing-asset="team_bios">
-      <div class="team-card"><div class="team-avatar">?</div><h4>[Role Title]</h4><p>President</p></div>
-      <div class="team-card"><div class="team-avatar">?</div><h4>[Role Title]</h4><p>Director of HR</p></div>
-      <div class="team-card"><div class="team-avatar">?</div><h4>[Role Title]</h4><p>Director of Payroll</p></div>
-      <div class="team-card"><div class="team-avatar">?</div><h4>[Role Title]</h4><p>Director of Benefits</p></div>
+      <div class="team-card" data-animate data-delay="1"><div class="team-avatar">?</div><h4>[Role Title]</h4><p>President</p></div>
+      <div class="team-card" data-animate data-delay="2"><div class="team-avatar">?</div><h4>[Role Title]</h4><p>Director of HR</p></div>
+      <div class="team-card" data-animate data-delay="3"><div class="team-avatar">?</div><h4>[Role Title]</h4><p>Director of Payroll</p></div>
+      <div class="team-card" data-animate data-delay="4"><div class="team-avatar">?</div><h4>[Role Title]</h4><p>Director of Benefits</p></div>
     </div>
     <p style="text-align:center; margin-top: 32px; color: var(--ink-300); font-size: 14px;">Placeholder profiles. Real team members will be added once bios and headshots are shared.</p>
   </div>
@@ -115,10 +239,11 @@
 
 <section class="band band-navy">
   <div class="container" style="text-align:center;">
-    <p class="eyebrow" style="justify-content:center;">Ready to Talk</p>
-    <h2 style="max-width: 22ch; margin: 0 auto 24px;">Let's Build Something Simpler for Your Team.</h2>
-    <p style="max-width: 60ch; margin: 0 auto 40px; color: rgba(255,255,255,0.85);">Book a 30 minute conversation with a Helpside specialist. No pressure, no long term contracts. Just a plan that works.</p>
-    <a href="contact.html" class="btn btn-primary">Request a Consultation</a>
+    <p class="eyebrow" style="justify-content:center;" data-animate>Ready to Talk</p>
+    <h2 class="playfair" style="max-width: 22ch; margin: 0 auto 12px;" data-animate data-delay="1">Let's Build Something Simpler for Your Team.</h2>
+    <span class="gold-accent-rule" style="margin: 0 auto 24px;" aria-hidden="true"></span>
+    <p style="max-width: 60ch; margin: 0 auto 40px; color: rgba(255,255,255,0.85);" data-animate data-delay="2">Book a 30 minute conversation with a Helpside specialist. No pressure, no long term contracts. Just a plan that works.</p>
+    <a href="contact.html" class="btn btn-primary btn-gold" data-animate data-delay="3">Request a Consultation</a>
   </div>
 </section>
 
@@ -192,5 +317,21 @@
 </div>
 
 <script src="js/site.js" defer></script>
+<script>
+  // Scroll-based fade-in-up for data-animate elements
+  (function () {
+    var els = document.querySelectorAll('[data-animate]');
+    if (!els.length) return;
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(function (el) { observer.observe(el); });
+  })();
+</script>
 </body>
 </html>

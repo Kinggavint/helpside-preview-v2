@@ -15,11 +15,116 @@
 <link rel="icon" type="image/svg+xml" href="assets/helpside-logo.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Hind:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Hind:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/base.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://kinggavint.github.io/helpside-preview-v2/"},{"@type":"ListItem","position":2,"name":"Services","item":"https://kinggavint.github.io/helpside-preview-v2/services.html"}]}
 </script>
+<style>
+  /* ── Premium typography ── */
+  .playfair { font-family: 'Playfair Display', Georgia, serif; }
+
+  /* ── Hero overlay ── */
+  .hero-short { position: relative; overflow: hidden; }
+  .hero-short .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10,20,40,0.72) 0%, rgba(10,20,40,0.45) 60%, rgba(180,145,60,0.18) 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero-short .container { position: relative; z-index: 1; }
+
+  /* ── Gold accent rule ── */
+  .gold-rule {
+    display: block;
+    width: 64px;
+    height: 3px;
+    background: linear-gradient(90deg, #c9a84c, #e8d48a, #c9a84c);
+    border-radius: 2px;
+    margin: 14px auto 0;
+  }
+  .gold-rule--left { margin-left: 0; }
+
+  /* ── Premium gold CTA button ── */
+  .btn-gold {
+    display: inline-block;
+    padding: 14px 36px;
+    background: linear-gradient(135deg, #c9a84c 0%, #e8d48a 50%, #c9a84c 100%);
+    color: #1a1a2e !important;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+    box-shadow: 0 4px 18px rgba(201,168,76,0.35);
+  }
+  .btn-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(201,168,76,0.5);
+    filter: brightness(1.07);
+  }
+
+  /* ── Scroll-animation base ── */
+  [data-animate] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+  }
+  [data-animate].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  [data-animate][data-delay="1"] { transition-delay: 0.10s; }
+  [data-animate][data-delay="2"] { transition-delay: 0.20s; }
+  [data-animate][data-delay="3"] { transition-delay: 0.30s; }
+  [data-animate][data-delay="4"] { transition-delay: 0.40s; }
+
+  /* ── Service section headings ── */
+  .service-heading {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  /* ── Eyebrow refinement ── */
+  .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+  }
+
+  /* ── Split section image polish ── */
+  .split__media img {
+    border-radius: 8px;
+    box-shadow: 0 8px 36px rgba(0,0,0,0.13);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  .split__media img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 14px 48px rgba(0,0,0,0.18);
+  }
+
+  /* ── CTA band refinement ── */
+  .band-navy h2.playfair { color: #fff; }
+  .band-navy .eyebrow { color: #e8d48a; }
+
+  /* ── Nav CTA subtle polish ── */
+  .site-nav__cta {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .site-nav__cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+  }
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -50,10 +155,12 @@
 <main id="main">
 
 <section class="hero hero-short">
+  <div class="hero-overlay" aria-hidden="true"></div>
   <div class="container">
-    <p class="eyebrow">Services</p>
-    <h1>One Team. Six Core Services. Fully Integrated.</h1>
-    <p class="lede">Every Helpside client gets access to the full stack. HR, payroll, benefits, risk, retirement, and HR technology. No add-on charges, no separate vendors, no gaps.</p>
+    <p class="eyebrow" data-animate>Services</p>
+    <h1 class="playfair" data-animate data-delay="1">One Team. Six Core Services. Fully Integrated.</h1>
+    <span class="gold-rule" aria-hidden="true"></span>
+    <p class="lede" data-animate data-delay="2">Every Helpside client gets access to the full stack. HR, payroll, benefits, risk, retirement, and HR technology. No add-on charges, no separate vendors, no gaps.</p>
   </div>
 </section>
 
@@ -61,9 +168,10 @@
 <section id="hr" class="band">
   <div class="container">
     <div class="split">
-      <div class="split__body reveal">
+      <div class="split__body reveal" data-animate>
         <div class="card__icon" style="margin-bottom: 28px;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-        <h2>HR Outsourcing</h2>
+        <h2 class="service-heading">HR Outsourcing</h2>
+        <span class="gold-rule gold-rule--left" aria-hidden="true" style="margin-bottom: 20px;"></span>
         <p class="lede">Employee handbooks, onboarding workflows, terminations, investigations, and manager training. A dedicated HR consultant handles the hard conversations and keeps you compliant with federal and state employment law.</p>
         <ul style="list-style: none; padding: 0; margin: 32px 0 0;">
           <li style="display:flex;gap:12px;align-items:baseline;margin-bottom:12px;"><span style="color:var(--orange);flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Custom employee handbook development</li>
@@ -74,7 +182,7 @@
 <li style="display:flex;gap:12px;align-items:baseline;margin-bottom:12px;"><span style="color:var(--orange);flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Multi-state compliance monitoring</li>
         </ul>
       </div>
-      <div class="split__media reveal" style="align-self: start;">
+      <div class="split__media reveal" data-animate data-delay="2" style="align-self: start;">
         <img src="assets/photos/photo-01-specialist-desk.jpg" alt="HR Outsourcing in action at Helpside.">
       </div>
     </div>
@@ -84,9 +192,10 @@
 <section id="payroll" class="band band-cream">
   <div class="container">
     <div class="split">
-      <div class="split__body reveal">
+      <div class="split__body reveal" data-animate>
         <div class="card__icon" style="margin-bottom: 28px;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-        <h2>Payroll Administration</h2>
+        <h2 class="service-heading">Payroll Administration</h2>
+        <span class="gold-rule gold-rule--left" aria-hidden="true" style="margin-bottom: 20px;"></span>
         <p class="lede">Full service payroll processing with tax filings, garnishments, direct deposit, and year end W-2s. Employees get a modern self service portal and mobile app. Business owners get a single quarterly summary.</p>
         <ul style="list-style: none; padding: 0; margin: 32px 0 0;">
           <li style="display:flex;gap:12px;align-items:baseline;margin-bottom:12px;"><span style="color:var(--orange);flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Weekly, biweekly, semi-monthly, or monthly cycles</li>
@@ -97,7 +206,7 @@
 <li style="display:flex;gap:12px;align-items:baseline;margin-bottom:12px;"><span style="color:var(--orange);flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Time and attendance integration</li>
         </ul>
       </div>
-      <div class="split__media reveal" style="align-self: start;">
+      <div class="split__media reveal" data-animate data-delay="2" style="align-self: start;">
         <img src="assets/photos/photo-02-consultation.jpg" alt="Payroll Administration in action at Helpside.">
       </div>
     </div>
@@ -107,9 +216,10 @@
 <section id="benefits" class="band">
   <div class="container">
     <div class="split">
-      <div class="split__body reveal">
+      <div class="split__body reveal" data-animate>
         <div class="card__icon" style="margin-bottom: 28px;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-        <h2>Employee Benefits</h2>
+        <h2 class="service-heading">Employee Benefits</h2>
+        <span class="gold-rule gold-rule--left" aria-hidden="true" style="margin-bottom: 20px;"></span>
         <p class="lede">Access master medical, dental, vision, and voluntary plans with the buying power of hundreds of businesses. Lower rates, better plan options, and less renewal volatility than shopping alone.</p>
         <ul style="list-style: none; padding: 0; margin: 32px 0 0;">
           <li style="display:flex;gap:12px;align-items:baseline;margin-bottom:12px;"><span style="color:var(--orange);flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Group medical, dental, and vision plans</li>
@@ -120,7 +230,7 @@
 <li style="display:flex;gap:12px;align-items:baseline;margin-bottom:12px;"><span style="color:var(--orange);flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Open enrollment and communication support</li>
         </ul>
       </div>
-      <div class="split__media reveal" style="align-self: start;">
+      <div class="split__media reveal" data-animate data-delay="2" style="align-self: start;">
         <img src="assets/photos/photo-03-safety-walkthrough.jpg" alt="Employee Benefits in action at Helpside.">
       </div>
     </div>
@@ -130,9 +240,10 @@
 <section id="risk" class="band band-cream">
   <div class="container">
     <div class="split">
-      <div class="split__body reveal">
+      <div class="split__body reveal" data-animate>
         <div class="card__icon" style="margin-bottom: 28px;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-        <h2>Risk &amp; Safety</h2>
+        <h2 class="service-heading">Risk &amp; Safety</h2>
+        <span class="gold-rule gold-rule--left" aria-hidden="true" style="margin-bottom: 20px;"></span>
         <p class="lede">Workers compensation coverage, OSHA compliance, safety programs, and claims management. Helpside is your loss control partner from onboarding through injury response.</p>
         <ul style="list-style: none; padding: 0; margin: 32px 0 0;">
           <li style="display:flex;gap:12px;align-items:baseline;margin-bottom:12px;"><span style="color:var(--orange);flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Workers compensation coverage and claims</li>
@@ -143,7 +254,7 @@
 <li style="display:flex;gap:12px;align-items:baseline;margin-bottom:12px;"><span style="color:var(--orange);flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Loss control site visits</li>
         </ul>
       </div>
-      <div class="split__media reveal" style="align-self: start;">
+      <div class="split__media reveal" data-animate data-delay="2" style="align-self: start;">
         <img src="assets/photos/photo-04-team.jpg" alt="Risk &amp; Safety in action at Helpside.">
       </div>
     </div>
@@ -153,9 +264,10 @@
 <section id="retire" class="band">
   <div class="container">
     <div class="split">
-      <div class="split__body reveal">
+      <div class="split__body reveal" data-animate>
         <div class="card__icon" style="margin-bottom: 28px;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
-        <h2>Retirement Plans</h2>
+        <h2 class="service-heading">Retirement Plans</h2>
+        <span class="gold-rule gold-rule--left" aria-hidden="true" style="margin-bottom: 20px;"></span>
         <p class="lede">Group 401(k) plans with low administrative fees, employee education, and automatic enrollment options. Helpside handles the plan compliance, so your team can focus on saving.</p>
         <ul style="list-style: none; padding: 0; margin: 32px 0 0;">
           <li style="display:flex;gap:12px;align-items:baseline;margin-bottom:12px;"><span style="color:var(--orange);flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Group 401(k) and Safe Harbor plans</li>
@@ -166,7 +278,7 @@
 <li style="display:flex;gap:12px;align-items:baseline;margin-bottom:12px;"><span style="color:var(--orange);flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Access to institutional investment lineups</li>
         </ul>
       </div>
-      <div class="split__media reveal" style="align-self: start;">
+      <div class="split__media reveal" data-animate data-delay="2" style="align-self: start;">
         <img src="assets/photos/photo-05-office-exterior.jpg" alt="Retirement Plans in action at Helpside.">
       </div>
     </div>
@@ -176,9 +288,10 @@
 <section id="hrtech" class="band band-cream">
   <div class="container">
     <div class="split">
-      <div class="split__body reveal">
+      <div class="split__body reveal" data-animate>
         <div class="card__icon" style="margin-bottom: 28px;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
-        <h2>HR Technology</h2>
+        <h2 class="service-heading">HR Technology</h2>
+        <span class="gold-rule gold-rule--left" aria-hidden="true" style="margin-bottom: 20px;"></span>
         <p class="lede">A single unified portal for employees and administrators. Real time reporting, mobile access, and integration with your accounting or scheduling software.</p>
         <ul style="list-style: none; padding: 0; margin: 32px 0 0;">
           <li style="display:flex;gap:12px;align-items:baseline;margin-bottom:12px;"><span style="color:var(--orange);flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Employee self service portal</li>
@@ -189,7 +302,7 @@
 <li style="display:flex;gap:12px;align-items:baseline;margin-bottom:12px;"><span style="color:var(--orange);flex-shrink:0;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Mobile app for pay stubs and W-2s</li>
         </ul>
       </div>
-      <div class="split__media reveal" style="align-self: start;">
+      <div class="split__media reveal" data-animate data-delay="2" style="align-self: start;">
         <img src="assets/photos/photo-01-specialist-desk.jpg" alt="HR Technology in action at Helpside.">
       </div>
     </div>
@@ -199,10 +312,11 @@
 
 <section class="band band-navy">
   <div class="container" style="text-align:center;">
-    <p class="eyebrow" style="justify-content:center;">Ready to Talk</p>
-    <h2 style="max-width: 22ch; margin: 0 auto 24px;">Let's Build Something Simpler for Your Team.</h2>
-    <p style="max-width: 60ch; margin: 0 auto 40px; color: rgba(255,255,255,0.85);">Book a 30 minute conversation with a Helpside specialist. No pressure, no long term contracts. Just a plan that works.</p>
-    <a href="contact.html" class="btn btn-primary">Request a Consultation</a>
+    <p class="eyebrow" style="justify-content:center;" data-animate>Ready to Talk</p>
+    <h2 class="playfair" style="max-width: 22ch; margin: 0 auto 16px;" data-animate data-delay="1">Let's Build Something Simpler for Your Team.</h2>
+    <span class="gold-rule" aria-hidden="true" data-animate data-delay="2" style="margin-bottom: 24px;"></span>
+    <p style="max-width: 60ch; margin: 0 auto 40px; color: rgba(255,255,255,0.85);" data-animate data-delay="2">Book a 30 minute conversation with a Helpside specialist. No pressure, no long term contracts. Just a plan that works.</p>
+    <a href="contact.html" class="btn-gold" data-animate data-delay="3">Request a Consultation</a>
   </div>
 </section>
 
@@ -276,5 +390,21 @@
 </div>
 
 <script src="js/site.js" defer></script>
+<script>
+  // Scroll-based fade-in-up for data-animate elements
+  (function () {
+    var els = document.querySelectorAll('[data-animate]');
+    if (!els.length) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(function (el) { io.observe(el); });
+  })();
+</script>
 </body>
 </html>
